@@ -17,11 +17,16 @@
 }
 
 body {
-  color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+
 }
+
+  
+  .dog_reg_full{
+    background-image: url('/images/logo2ee.jpg');
+    background-position: center;
+    background-repeat:no-repeat;
+    background-size: cover;
+    color: white;
+    /* width: 100%; */
+}
+
