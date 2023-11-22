@@ -34,7 +34,7 @@ const CustomSelect = ({
         <SelectTrigger className={`w-full form-input capitalize "} bg-transparent text-white rounded-[32px] border-yellow1 border-2`}>
           <SelectValue placeholder={placeholder} />
         </SelectTrigger>
-        <SelectContent className="">
+        <SelectContent className="z-[2000]">
           {options.map((r, index) => (
             <SelectItem key={index} value={r?.value} className="capitalize">
               {r?.name}

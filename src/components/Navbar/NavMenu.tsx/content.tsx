@@ -2,14 +2,13 @@ export const links = [
   {
     id: "#",
     url: "",
-    name: "HOMES FOR RENT",
+    name: "HOMES",
     sub: [
-      { url: "#", name: "View All Listings", id: "#" },
+      { url: "#", name: "Register", id: "#" },
 
-      { url: "#", name: "Single Unit  Houses", id: "#" },
-      { url: "#", name: "Duplex Houses", id: "#" },
-      { url: "#", name: "Apartments", id: "#" },
-      { url: "#", name: "Self Contained Rooms", id: "#" },
+      { url: "#", name: "Breeds", id: "#" },
+      { url: "#", name: "About Us", id: "#" },
+      { url: "#", name: "Search", id: "#" },
     ],
     //sub2 is only used for mobile view
     sub2: [
@@ -23,15 +22,15 @@ export const links = [
   {
     id: "#",
     url: "",
-    name: "HIRE A PROFESSIONAL",
+    name: "cOMMUNITY",
     sub: [
-      { id: "#", url: "#", name: "Renter" },
-      { id: "#", url: "#", name: "Property Owner" },
-      { id: "#", url: "#", name: "Artisan" },
+      { id: "#", url: "#", name: "POSTS" },
+      { id: "#", url: "#", name: "ADVERTISSEMENTS" },
+      { id: "#", url: "#", name: "NEWLY REGISTERED" },
     ],
   },
-  { id: "#", url: "", name: "MOVING SALE" },
-  { id: "#", url: "", name: "AREA VIBES" },
+  { id: "", url: "/profile", name: "PROFILE" },
+  { id: "#", url: "", name: "REGISTER" },
   { id: "#", url: "/faq", name: "FAQS" },
   { id: "#", url: "/contact", name: "CONTACT" },
 ];

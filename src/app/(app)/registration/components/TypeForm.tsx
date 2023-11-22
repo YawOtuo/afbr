@@ -16,41 +16,48 @@ import { SelectSearchInput } from "@/components/SelectSearchInput";
 import CountryInput from "@/components/CountryInput";
 import SwiperSlideControls from "./SwiperSlideControls";
 import BackAndNextControls from "./BackAndNextControls";
-const TypeForm = () => {
+import SlideEnter from "@/components/SlideEnter";
+
+type Props = {
+  setActiveSlide: any;
+};
+const TypeForm = ({ setActiveSlide }: Props) => {
   const [propertyData, setPropertyData] = useLocalStorage<any>("property1", {
     gender: "Male",
-    leaseTerm: "12 months",
-    maritalStatus: "single",
-    mostRecentEmployment: "employed",
-    preferredMethodOfContact: "phone",
-    otherApplicants: "no",
   });
   const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
     useLocalStorage<any>("phoneNumberSelectedCountry");
   return (
-    <Root className="dog_reg_full text-yellow1 flex flex-col items-center justify-center p1 w-full ">
-          <div className=" items-center justify-center form-col w-full max-w-[50%]">
-            <CustomSelect
-              label="Registration Type"
-              placeholder={
-                propertyData?.maritalStatus || "Select marital status"
-              }
-              options={[
-                { name: "Domestic", value: "domestic" },
-                { name: "International", value: "international" },
-              ]}
-              onChange={(value) =>
-                setPropertyData({ ...propertyData, maritalStatus: value })
-              }
-            />
-            <CountryInput label="Country" onChange={()=> {
-              console.log('ere')
-            }} />
+    <SlideEnter>
+      <Root className="bg-transparent text-yellow1 flex flex-col items-center justify-center p1 w-full ">
+        <div className=" items-center justify-center form-col w-full max-w-[50%]">
+          <CustomSelect
+            label="Registration Type"
+            placeholder={propertyData?.maritalStatus || "Select marital status"}
+            options={[
+              { name: "Domestic", value: "domestic" },
+              { name: "International", value: "international" },
+            ]}
+            onChange={(value) =>
+              setPropertyData({ ...propertyData, maritalStatus: value })
+            }
+          />
+          <CountryInput
+            label="Country"
+            onChange={() => {
+              console.log("ere");
+            }}
+          />
         </div>
+
         <div className="mt-5">
-        <BackAndNextControls/>
-  
-</div>       </Root>
+          <BackAndNextControls
+           
+            forward={() => setActiveSlide((init) => init + 1)}
+          />
+        </div>
+      </Root>
+    </SlideEnter>
   );
 };
 

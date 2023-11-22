@@ -1,0 +1,9 @@
+.hero{
+    display: flex;
+    font-weight: 800;
+    min-height: 70vh;
+    font-size: 40px;
+    object-fit: cover;
+    background-repeat: no-repeat;
+    background-size: cover;
+}

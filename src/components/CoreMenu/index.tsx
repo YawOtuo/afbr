@@ -37,7 +37,7 @@ const CoreMenu = ({ children }: { children: ReactNode }) => {
           isMenuOpen ? "overflow-y-hidden brightness-50" : "opacity-100"
         }
         transition-all duration-[100ms] w-full flex flex-col itemhs-center justify-centerh h-full
-        mt-[5rem] md:mt-[8rem] 2xl:mt-[11rem] 
+        
         `}>
         {children}
 
