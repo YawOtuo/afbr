@@ -33,8 +33,8 @@ const prices = {
 
 export const RegistrationSlide = ({ type }) => {
   const [country, setCountry] = useState("");
-  const [registrationInfo, setRegistrationInfo] =
-    useLocalStorage("dog-registration-info");
+  const [registrationInfo, setRegistrationInfo] = typeof window != "undefined" ? 
+    useLocalStorage("dog-registration-info") : {};
 
   useEffect(() => {
     if (prices && type) {
