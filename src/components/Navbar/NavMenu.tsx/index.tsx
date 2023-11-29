@@ -55,15 +55,15 @@ export default function Menu(props: any) {
                 "flex flex-row items-center justify-between pt-8  w-full "
               }
             >
-              <div
+              <div  
                 className="w-full  relative
-                max-w-[106px] max-h-[86px] aspect-[106/86]
-                2xl:max-w-[150px] bg-red-300
-              2xl:max-h-[122px] h-full 2xl:aspect-[150/122]
+                max-w-[106px] aspect-square
+                2xl:max-w-[150px]
+            h-full 
               "
               >
                 <Image
-                  src={icons.Logo}
+                  src={'/images/logo.png'}
                   alt="bg"
                   fill
                   objectPosition="center"
