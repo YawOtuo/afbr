@@ -8,6 +8,8 @@ import ImageOptionsPopover from "./ImageOptionsPopover";
 import { ImageCard } from "./ImageCard";
 import { useLocalStorage } from "@uidotdev/usehooks";
 import { handleFileDrop, uploadToCloudinary } from "./api";
+import axios from "axios";
+import { deleteDogImage } from "@/lib/api/dogs";
 
 export default function ChooseImages() {
   const [files, setFiles] = useState<any>([]);
@@ -16,25 +18,16 @@ export default function ChooseImages() {
     []
   );
 
-  // const onDrop = useCallback(
-  //   (acceptedFiles: any) => {
-  //     handleFileDrop(acceptedFiles, setFiles);
-  //   },
-  //   [setFiles]
-  // );
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      handleFileDrop(acceptedFiles, setFiles);
+    },
+    [setFiles]
+  );
 
-  const onDrop = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
-    }
-  }, []);
+
   useEffect(() => {
-    if (files?.length >= 1) {
+    if (files?.length >= 0) {
       setListingimages(files);
     }
   }, [files]);
@@ -46,6 +39,10 @@ export default function ChooseImages() {
   }, []);
 
   const remove = (index: any) => {
+
+
+    deleteDogImage({public_id : files[index]?.public_id })
+
     setFiles((previousFiles: any) => {
       const updatedFiles = [...previousFiles];
       updatedFiles.splice(index, 1);
@@ -71,21 +68,21 @@ export default function ChooseImages() {
   return (
     <>
       <form className="w-full flex flex-col items-center justify-center h-full lg:px-24 gap-[2rem]">
-        <div className="w-full flex flex-col gap-8 items-start justify-center max-w-[1108px]">
+        <div className="w-full flex flex-col gap-8 items-start justify-center max-w-[1308px]">
           <div className=" ">
-            <p className={`${styles.title} w-fit`}>
-              Choose your property images
+            <p className={`${styles.title} w-fit font-bold text-3xl mt-5`}>
+              Choose your dog images
             </p>
             <p className="">
               You can remove or add an image after you publish your listing.
             </p>
           </div>
-          <div className="flex flex-col items-end justify-center w-full h-full max-w-[1108px]">
+          <div className="flex flex-col items-end justify-center w-full h-full max-w-[1308px]">
             {files.length >= 1 && <AddMoreImages setFiles={setFiles} />}
             {files.length < 1 && (
               <div
                 {...getRootProps({})}
-                className="max-w-[1108px] max-h-[640px] aspect-[1108/640] w-full h-full rounded-[0.47181rem] border-[0.755px] border-[#00000040] flex items-center justify-center">
+                className="max-w-[1308px] max-h-[640px] aspect-[1308/640] w-full h-full rounded-[0.47181rem] border-[0.755px] border-[#00000040] flex items-center justify-center">
                 <input {...getInputProps()} />
                 {isDragActive ? (
                   <p>Drop the files here</p>
@@ -109,7 +106,7 @@ export default function ChooseImages() {
         </div>
 
         {files.length >= 1 && (
-          <div className="grid grid-cols-3 gap-5 w-full max-w-[1108px]">
+          <div className="grid grid-cols-3 gap-5 w-full max-w-[1308px]">
             <div className="col-span-3 h-full">
               <BannerImage
                 file={files?.[0]}

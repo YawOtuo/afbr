@@ -11,7 +11,7 @@ export default function Page() {
   return (
     <Root>
 
-      <RegistrationSlide type="Adult Registration" />
+      <RegistrationSlide type="adult" />
 
     </Root>
   );

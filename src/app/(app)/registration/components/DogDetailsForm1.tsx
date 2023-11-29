@@ -36,7 +36,7 @@ const DogDetailsForm1 = ({ setActiveSlide }: Props) => {
 
   return (
     <>
-      <Root className="bg-transparent  p1 p-10 ">
+      <Root className="bg-transparent  p1 p-10 min-h-[60vh]">
         <div className="grid grid-cols-3 gap-x-10 gap-y-5 ">
           <div className="col-span-3 lg:col-span-2 form-col w-full">
             <TextFieldInput

@@ -8,16 +8,12 @@ type Props = {
 };
 
 export const AddMoreImages = ({ setFiles }: Props) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
-    }
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      handleFileDrop(acceptedFiles, setFiles);
+    },
+    [setFiles]
+  );
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 
   return (
@@ -34,16 +30,12 @@ export const AddMoreImages = ({ setFiles }: Props) => {
 };
 
 export const AddMoreImagesXl = ({ setFiles }: Props) => {
-  const onDrop = useCallback((acceptedFiles: any) => {
-    if (acceptedFiles?.length) {
-      setFiles((previousFiles: any) => [
-        ...previousFiles,
-        ...acceptedFiles.map((file: any) =>
-          Object.assign(file, { preview: URL.createObjectURL(file) })
-        ),
-      ]);
-    }
-  }, []);
+  const onDrop = useCallback(
+    (acceptedFiles: any) => {
+      handleFileDrop(acceptedFiles, setFiles);
+    },
+    [setFiles]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({ onDrop });
 

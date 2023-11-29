@@ -39,13 +39,13 @@ const Navbar = (props: any) => {
         <div className="flex items-center lg:gap-[73px] md:gap-[31px] w-full justify-end">
             <button
               onClick={(e: any) => {
-                router.push("/login");
+                router.push("/registration");
               }}
               className={`hidden lg:block w-full 2xl:aspect-[387/75]
             aspect-[278/55]
             2xl:max-w-[387px] max-w-[278px]
             rounded-[32px] border-2 border-[#fff] bg-yellow3 text-white text-base font-semibold }`}>
-              Start Here
+              Register your dog
             </button>
         
 

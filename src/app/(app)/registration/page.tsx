@@ -59,12 +59,12 @@ export default function Page() {
         link="/registration/adult"
         subText="Lorem"
       />{" "}
-      <RegType
+      {/* <RegType
         label="Litter Registration"
         image="/images/registration/litter.jpeg"
         link="/registration/adult"
         subText="Lorem"
-      />
+      /> */}
     </div>
   );
 }

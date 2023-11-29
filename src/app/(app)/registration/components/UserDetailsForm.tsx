@@ -44,6 +44,7 @@ const UserDetailsForm = ({setActiveSlide} : any) => {
   return (
     <>
       <Root className="bg-transparent flex flex-col p1 p-10 ">
+        <p className="text-white font-semibold">Please confirm your details</p>
         <div className="grid grid-cols-3 gap-x-10 gap-y-5 ">
           <div className="col-span-3 lg:col-span-1 form-col w-full">
             <TextFieldInput

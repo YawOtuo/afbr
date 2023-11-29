@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 export default function Page() {
   return (
     <Root>
-      <RegistrationSlide type="Litter Registration" />
+      <RegistrationSlide type="litter" />
     </Root>
   );
 }
