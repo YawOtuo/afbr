@@ -52,4 +52,4 @@ const Page = () => {
     </form>
   );
 };
-export default page;
+export default Page;
