@@ -4,7 +4,7 @@ import { useFormik } from "formik";
 import Link from "next/link";
 import { Button } from "@/components/ui/button";
 
-const page = () => {
+const Page = () => {
   // Pass the useFormik() hook initial form values and a submit function that will
   // be called when the form is submitted
   const formik = useFormik({
