@@ -18,7 +18,7 @@ export default function Profile() {
   } = useQuery(["dogs"], () => fetchDogs());
   return (
     <div className="p-10 w-full flex flex-col">
-      <div className="flex gap-5 justify-center items-center mb-10">
+      <div className="flex gap-5 flex-col lg:flex-row justify-center items-center mb-10">
         <TotalSales amount={30} filter="Dogs" />
         <TotalSales amount={30} filter="advertisements" />
         <TotalSales amount={30} filter="posts/engagements" />

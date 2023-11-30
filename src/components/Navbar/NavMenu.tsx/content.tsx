@@ -2,13 +2,28 @@ export const links = [
   {
     id: "#",
     url: "",
-    name: "HOMES",
+    name: "HOME",
     sub: [
-      { url: "#", name: "Register", id: "#" },
-
       { url: "#", name: "Breeds", id: "#" },
       { url: "#", name: "About Us", id: "#" },
       { url: "#", name: "Search", id: "#" },
+    ],
+    //sub2 is only used for mobile view
+    sub2: [
+      {
+        id: "#",
+        url: "#",
+        name: "stuff goes here",
+      },
+    ],
+  },
+  {
+    id: "#",
+    url: "",
+    name: "REGISTER DOG",
+    sub: [
+      { url: "/registration/adult", name: "Adult Registration", id: "#" },
+      { url: "/registration/puppy", name: "Puppy Registration", id: "#" },
     ],
     //sub2 is only used for mobile view
     sub2: [
@@ -30,7 +45,6 @@ export const links = [
     ],
   },
   { id: "", url: "/profile", name: "PROFILE" },
-  { id: "#", url: "", name: "REGISTER" },
   { id: "#", url: "/faq", name: "FAQS" },
   { id: "#", url: "/contact", name: "CONTACT" },
 ];

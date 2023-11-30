@@ -10,10 +10,10 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <body className={montserrat.className}>
       <div className="grid grid-cols-5">
-        <div className="">
+        <div className="hidden lg:flex">
           <Navbar2 />
         </div>
-        <div className="col-span-4 flex flex-col">
+        <div className="col-span-5 lg:col-span-4 flex flex-col">
           <Navbar />
           <div>{children}</div>
         </div>
