@@ -10,6 +10,9 @@ const nextConfig = {
         "cdn.sanity.io",
       ],
     },
+    images: {
+      domains: ['res.cloudinary.com', 'images.unsplash.com'],
+    },
     typescript: {
       ignoreBuildErrors: true,
     },

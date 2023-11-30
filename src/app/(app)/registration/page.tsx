@@ -22,8 +22,8 @@ const RegType = ({
   return (
     <div
       className={`${
-        direction == "right" ? "flex-row-reverse bg-yellow1" : "flex-row"
-      } flex items-center justify-center
+        direction == "right" ? "lg:flex-row-reverse bg-yellow1" : "lg:flex-row"
+      } flex flex-col-reverse items-center justify-center
       hover:scale-[1.05] py-20 gap-20 `}>
       <div className="flex flex-col gap-5 basis-[30%] justify-between">
         <div className="flex flex-col gap-3">
@@ -45,7 +45,7 @@ const RegType = ({
 
 export default function Page() {
   return (
-    <div className="flex flex-col gap-10 w-full mt-10">
+    <div className="flex flex-col gap-10 w-full mt-10 px-5 ">
       <RegType
         label="Adult Registration"
         image="/images/registration/adult.png"
