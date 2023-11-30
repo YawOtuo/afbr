@@ -32,16 +32,19 @@ const prices = {
 
 export const RegistrationSlide = ({ type }) => {
   const [country, setCountry] = useState("");
+  let registrationInfo;
+  let setRegistrationInfo;
+
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    const [registrationInfo, setRegistrationInfo] = useLocalStorage(
+    [registrationInfo, setRegistrationInfo] = useLocalStorage(
       "dog-registration-info"
     );
   }
 
   useEffect(() => {
     if (prices && type) {
-      setRegistrationInfo((prevRegistrationInfo: any) => ({
+      setRegistrationInfo((prevRegistrationInfo) => ({
         ...prevRegistrationInfo,
         price:
           prices[
@@ -51,11 +54,12 @@ export const RegistrationSlide = ({ type }) => {
           ],
         type: `${type} registration`,
         country: `${
-          country == "republic of ghana" ? "domestic" : "international"
+          country === "republic of ghana" ? "domestic" : "international"
         }`,
       }));
     }
   }, [type, country]);
+
   return (
     <Root>
       <div
