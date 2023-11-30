@@ -18,31 +18,41 @@ const Pagination = ({ label, url }: { label: string; url: string }) => {
 
 const prices = {
   "adult-international": "USD 35.00",
-  "adult-international-cost": 35.00,
+  "adult-international-cost": 35.0,
 
   "adult-domestic": "USD 30.00",
-  "adult-domestic-cost": 30.00,
+  "adult-domestic-cost": 30.0,
 
   "puppy-international": "USD 30.00",
-  "puppy-international-cost": 30.00,
+  "puppy-international-cost": 30.0,
 
   "puppy-domestic": "USD 25.00",
-  "puppy-domestic-cost": 25.00
-
+  "puppy-domestic-cost": 25.0,
 };
 
 export const RegistrationSlide = ({ type }) => {
   const [country, setCountry] = useState("");
-  const [registrationInfo, setRegistrationInfo] = typeof window != "undefined" ? 
-    useLocalStorage("dog-registration-info") : {};
+  if (typeof window !== "undefined") {
+    // eslint-disable-next-line react-hooks/rules-of-hooks
+    const [registrationInfo, setRegistrationInfo] = useLocalStorage(
+      "dog-registration-info"
+    );
+  }
 
   useEffect(() => {
     if (prices && type) {
-      setRegistrationInfo((prevRegistrationInfo : any) => ({
+      setRegistrationInfo((prevRegistrationInfo: any) => ({
         ...prevRegistrationInfo,
-        price: prices[`${type}-${country === "republic of ghana" ? "domestic" : "international"}-cost`],
+        price:
+          prices[
+            `${type}-${
+              country === "republic of ghana" ? "domestic" : "international"
+            }-cost`
+          ],
         type: `${type} registration`,
-        country : `${country == "republic of ghana" ? "domestic" : "international"}`
+        country: `${
+          country == "republic of ghana" ? "domestic" : "international"
+        }`,
       }));
     }
   }, [type, country]);

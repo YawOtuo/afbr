@@ -1,7 +1,7 @@
 import React from "react";
 import SignUpForm from "./components/signupForm";
 
-const Page = () => {
+export default function Page () {
   return (
     <div className="w-full">
       <div className="flex flex-wrap gap-12 bg-[#ba8108] text-white p-9 items-center justify-center ">
@@ -19,4 +19,3 @@ const Page = () => {
   );
 };
 
-export default Page;
