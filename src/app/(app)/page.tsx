@@ -1,11 +1,12 @@
+/* eslint-disable react/no-unescaped-entities */
 import { fetchDogs } from "@/lib/api/dogs";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { FaArrowRightLong } from "react-icons/fa6";
-import CaTickStyled from "./components/icons/CaTickStyled";
 import HomeReasonsCard from "./components/HomeReasonsCard";
 import HomeNewlyRegistered from "./components/HomeNewlyRegistered";
+import CaTickStyled from "./components/icons/CaTickStyled";
 
 export default function Home() {
   return (
@@ -82,19 +83,20 @@ export default function Home() {
       </div>
       <div className="flex flex-col gap-20 items-center lg:items-start justify-center  py-24 lg:h-[100vh] ">
         <p className="text-3xl font-bold px-20 text-yellow1">
-          What is in store for you?
+          What's in store for you?
         </p>
         <div className="grid grid-cols-3 gap-x-10 gap-y-10 px-5 lg:px-10   lg:py-0 items-center justify-center">
           <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
-            <HomeReasonsCard variant="identity" title="A verifiable identity" />
+            <HomeReasonsCard variant="identity" title="A verifiable identity" subText=""/>
           </div>{" "}
           <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
-            <HomeReasonsCard variant="community" title="A trusted community" />
+            <HomeReasonsCard variant="community" title="A trusted community"subText="" />
           </div>{" "}
           <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
             <HomeReasonsCard
               variant="public"
               title="A public platform to advertise"
+              subText=""
             />
           </div>
         </div>
