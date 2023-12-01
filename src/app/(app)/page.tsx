@@ -11,8 +11,8 @@ import CaTickStyled from "./components/icons/CaTickStyled";
 export default function Home() {
   return (
     <main>
-      <div className="flex w-full flex-col gap-5 px-5 lg:px-20 py-24">
-        <p className="text-yellow1 text-3xl md:text-[3rem] lg:text-[8rem] font-bold text-center px-5 lg:px-24">
+      <div className="flex w-full flex-col  px-5 lg:px-20 py-24">
+        <p className="text-yellow1 text-3xl lg:text-6xl font-bold text-center px-5 ">
           The African Bully Registry
         </p>
 
@@ -27,7 +27,7 @@ export default function Home() {
       </div>
       <div className="grid grid-cols-2 gap-y-10  py-24 lg:py-0 lg:h-[80vh] px-5 lg:px-24">
         <div className="col-span-2 lg:col-span-1 flex flex-col gap-5 items-start justify-center">
-          <p className="text-3xl lg:text-[4rem] ">
+          <p className="text-3xl lg:text-6xl ">
             <span className="text-yellow1">Register</span> your dog with us
             today
           </p>
