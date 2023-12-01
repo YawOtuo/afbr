@@ -41,7 +41,7 @@ export default function IconButton({ variant, label, reverse }: Props) {
   };
   return (
     <button
-      className={`flex gap-3 items-center justify-center uppercase hover:scale-[1.05] hover:bg-[#e4a95146] ${
+      className={`flex gap-3 items-center justify-center capitalize hover:scale-[1.05] hover:bg-[#e4a95146] ${
         reverse && "flex-row-reverse"
       } px-3 py-2`}>
       {options[variant]}

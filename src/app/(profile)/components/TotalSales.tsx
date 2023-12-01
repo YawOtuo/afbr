@@ -10,8 +10,8 @@ const TotalSales = ({filter, amount}: Props) => {
     <Root className="flex flex-col items-center justify-center gap-3 w-full md:max-w-[182px] 
     max-h-[101px] md:max-h-[109px] cursor-pointer hover:scale-[1.05] hover:bg-[#e4a95146]">
 
-      <p className="text-[#6e4f1f] font-bold text-2xl">GHS {amount}</p>
-      <p className="capitalize">Total {filter}</p>
+      <p className="text-yellow1 font-bold text-xl">{amount}</p>
+      <p className="capitalize text-center text-sm">Total {filter}</p>
 
     </Root>
   );
