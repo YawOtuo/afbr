@@ -20,7 +20,7 @@ const SignUpForm = () => {
   return (
     <form
       onSubmit={formik.handleSubmit}
-      className="flex flex-col items-center  gap-4 bg-gray-200 p-8"
+      className="flex flex-col items-center  gap-4 bg-white p-8 w-full h-full justify-center"
     >
       <input
         id="fullname"

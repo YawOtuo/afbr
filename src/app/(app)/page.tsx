@@ -7,10 +7,14 @@ import { FaArrowRightLong } from "react-icons/fa6";
 import HomeReasonsCard from "./components/HomeReasonsCard";
 import HomeNewlyRegistered from "./components/HomeNewlyRegistered";
 import CaTickStyled from "./components/icons/CaTickStyled";
+import FeaturedDogForToday from "./components/FeaturedFogForToday";
+import HeroSection from "./components/HeroSection";
+import HomeNewlyRegisteredSm from "./components/HomeNewlyRegisteredSm";
 
 export default function Home() {
   return (
     <main>
+        <HeroSection/>
       <div className="flex w-full flex-col  px-5 lg:px-20 py-24">
         <p className="text-yellow1 text-3xl lg:text-6xl font-bold text-center px-5 ">
           The African Bully Registry
@@ -20,11 +24,7 @@ export default function Home() {
           Africa's Premier Bully Registry
         </p>
       </div>
-      <div className="flex items-center justify-center bg-[url('/images/dedicated.jpeg')] bg-no-repeat bg-cover h-[90vh] px-5 lg:px-24 bg-center">
-        <p className="text-lg md:text-[2.5rem] font-bold text-white py-24">
-          Dedicated to connecting bully breeds across the globe
-        </p>
-      </div>
+      <FeaturedDogForToday />
       <div className="grid grid-cols-2 gap-y-10  py-24 lg:py-0 lg:h-[80vh] px-5 lg:px-24">
         <div className="col-span-2 lg:col-span-1 flex flex-col gap-5 items-start justify-center">
           <p className="text-3xl lg:text-6xl ">
@@ -87,10 +87,18 @@ export default function Home() {
         </p>
         <div className="grid grid-cols-3 gap-x-10 gap-y-10 px-5 lg:px-10   lg:py-0 items-center justify-center">
           <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
-            <HomeReasonsCard variant="identity" title="A verifiable identity" subText=""/>
+            <HomeReasonsCard
+              variant="identity"
+              title="A verifiable identity"
+              subText=""
+            />
           </div>{" "}
           <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
-            <HomeReasonsCard variant="community" title="A trusted community"subText="" />
+            <HomeReasonsCard
+              variant="community"
+              title="A trusted community"
+              subText=""
+            />
           </div>{" "}
           <div className="col-span-3 lg:col-span-1 flex items-center justify-center">
             <HomeReasonsCard
@@ -101,9 +109,12 @@ export default function Home() {
           </div>
         </div>
       </div>
-      <div className="my-20">
+      <div className="hidden lg:flex my-20 w-full">
         <HomeNewlyRegistered />
       </div>{" "}
+      <div className="lg:hidden ">
+        <HomeNewlyRegisteredSm/>
+      </div>
     </main>
   );
 }

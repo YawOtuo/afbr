@@ -1,21 +1,19 @@
 import React from "react";
 import SignUpForm from "./components/signupForm";
+import Image from "next/image";
 
-export default function Page () {
+export default function Page() {
   return (
-    <div className="w-full">
-      <div className="flex flex-wrap gap-12 bg-[#ba8108] text-white p-9 items-center justify-center ">
-        <div className="flex flex-col items-center justify-center gap-5">
-          <h1 className="text-4xl font-medium ">
-            Sign Up With The African Bully Registry
-          </h1>
-          <p>Join the Global Community of Bulldog Owners today, at no cost</p>
+    <div className="w-full   bg-[#d9d9d967] flex items-center justify-center pt-2">
+      <div className="flex flex-col lg:flex-row  text-white items-start justify-center h-full w-full">
+        <div className="relative w-full  bg-no-repeat bg-cover h-[30vh] lg:max-h-full lg:max-w-[724px] bg--left-top bg-[url('/images/signup.png')]">
+  
         </div>
-        <div className="flex ">
+
+        <div className="flex  w-full lg:max-w-[40%] lg:h-[90vh] ">
           <SignUpForm />
         </div>
       </div>
     </div>
   );
-};
-
+}

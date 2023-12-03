@@ -2,7 +2,9 @@ import HomeNewlyRegisteredCard from "./HomeNewlyRegisteredCard";
 
 export default function HomeNewlyRegistered() {
   return (
-    <div className="flex flex-col gap-10 px-5 lg:px-20">
+    <div className="flex flex-col gap-10 px-5 lg:px-20 w-full">
+
+
       <p className="text-2xl font-semibold">
         See the newly registered dogs on the block
       </p>

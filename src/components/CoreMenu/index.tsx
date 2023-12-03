@@ -1,7 +1,7 @@
 "use client";
 import { IoFootstepsOutline } from "react-icons/io5";
 import { ReactNode, use, useEffect, useState } from "react";
-import Navbar from "../Navbar";
+import Navbar from "../Navbar/index2";
 
 const CoreMenu = ({ children }: { children: ReactNode }) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);

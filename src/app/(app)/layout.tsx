@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "../globals.css";
-import CoreMenu from "@/components/CoreMenu";
+import Navbar from "@/components/Navbar/index";
+// import CoreMenu from "@/components/CoreMenu";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -17,9 +18,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-        <body className={montserrat.className}>
-          <CoreMenu> {children}</CoreMenu>
-        </body>
+      <body className={montserrat.className}>
+        <div className="hidden lg:flex">
+          <Navbar />
+        </div>{" "}
+        {children}
+      </body>
     </html>
   );
 }

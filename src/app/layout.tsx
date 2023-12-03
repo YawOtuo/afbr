@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/utils/provider";
+import 'swiper/css'
+
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
