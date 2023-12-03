@@ -1,5 +1,5 @@
 import { initializeApp } from "firebase/app";
-import axios from "axios";
+import axios from 'axios';
 import {
   getFirestore,
   query,
@@ -7,7 +7,7 @@ import {
   collection,
   where,
   addDoc,
-} from "firebase/firestore";
+} from 'firebase/firestore';
 
 import {
   GoogleAuthProvider,
@@ -17,10 +17,14 @@ import {
   createUserWithEmailAndPassword,
   sendPasswordResetEmail,
   signOut,
-  signInWithRedirect,
-} from "firebase/auth";
+  signInWithRedirect
+
+} from 'firebase/auth';
 import { url } from "../../../weburl";
+;
+
 // Import the functions you need from the SDKs you need
+
 
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
@@ -34,13 +38,14 @@ const firebaseConfig = {
   storageBucket: "afbr-80930.appspot.com",
   messagingSenderId: "905105460514",
   appId: "1:905105460514:web:a9c22a1e64ce7c2c63a97b",
-  measurementId: "G-TXC9MJ6FVV",
+  measurementId: "G-TXC9MJ6FVV"
 };
 
 // Initialize Firebase
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-const db = getFirestore(app);
+const auth = getAuth(app)
+const db = getFirestore(app)
+
 
 const googleProvider = new GoogleAuthProvider();
 
@@ -48,22 +53,31 @@ const signInWithGoogle = async () => {
   const auth = getAuth();
   signInWithPopup(auth, googleProvider)
     .then((result) => {
-      console.log(result);
+      console.log(result)
+      // This gives you a Google Access Token. You can use it to access the Google API.
       const credential = GoogleAuthProvider.credentialFromResult(result);
       const token = credential.accessToken;
+      // The signed-in user info.
       const user = result.user;
-   
-    })
-    .catch((error) => {
+      // IdP data available using getAdditionalUserInfo(result)
+      // ...
+    }).catch((error) => {
       // Handle Errors here.
-      console.log(error);
+      console.log(error)
       const errorCode = error.code;
       const errorMessage = error.message;
+      // The email of the user's account used.
       const email = error.customData.email;
+      // The AuthCredential type that was used.
       const credential = GoogleAuthProvider.credentialFromError(error);
       // ...
     });
 };
+
+
+
+
+
 
 const logInWithEmailAndPassword = async (email, password) => {
   try {
@@ -74,34 +88,39 @@ const logInWithEmailAndPassword = async (email, password) => {
   }
 };
 
+
+
 const registerWithEmailAndPassword = async (name, email, password) => {
-  var error = false;
+  var error = false
   var res;
   var user;
 
   try {
     res = await createUserWithEmailAndPassword(auth, email, password);
     user = res.user;
-    user.displayName = name;
+    user.displayName = name
     await addDoc(collection(db, "users"), {
       uid: user.uid,
       name: name,
       authProvider: "local",
-      email,
-    });
+      email
+    })
+
+
+
   } catch (err) {
     console.error(err);
     alert(err.message);
-  } finally {
+  }
+
+  finally {
     if (!error) {
       axios
-        .post(`${url}api/users`, {
-          uid: user.uid,
-          username: name,
-          email: email,
-        })
-        .then((res) => console.log("success", res))
-        .catch((err) => console.log(err));
+        .post(`${url}api/users`, { uid: user.uid, username: name, email: email })
+        .then((res) => console.log('success', res))
+        .catch((err) => console.log(err))
+
+
     }
   }
 };
@@ -117,7 +136,8 @@ const sendPasswordReset = async (email) => {
 };
 
 const Logout = () => {
-  signOut(auth).then((res) => (window.location = "/login"));
+  signOut(auth);
+  window.location = '/login'
 };
 
 export {
