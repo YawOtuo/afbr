@@ -15,7 +15,7 @@ export default function Home() {
   return (
     <main>
         <HeroSection/>
-      <div className="flex w-full flex-col  px-5 lg:px-20 py-24">
+      <div className="flex w-full flex-col  px-5 lg:px-20  py-10 lg:py-24">
         <p className="text-yellow1 text-3xl lg:text-6xl font-bold text-center px-5 ">
           The African Bully Registry
         </p>

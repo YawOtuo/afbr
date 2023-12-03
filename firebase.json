@@ -9,5 +9,16 @@
     "frameworksBackend": {
       "region": "us-central1"
     }
-  }
+  },
+  "headers": [
+    {
+      "source": "**/*",
+      "headers": [
+        {
+          "key": "Cross-Origin-Embedder-Policy",
+          "value": "unsafe-none"
+        }
+      ]
+    }
+  ]
 }

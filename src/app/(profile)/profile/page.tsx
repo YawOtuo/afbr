@@ -7,6 +7,7 @@ import TotalSales from "../components/TotalSales";
 import IconButton from "@/components/Buttons/IconButton";
 import RecentlyRegistered from "../components/RecentyRegistered";
 import Link from "next/link";
+import { Logout } from "@/lib/utils/firebase";
 
 export default function Profile() {
   // const [dogs, setDogs] = useState()
@@ -21,6 +22,7 @@ export default function Profile() {
       <div className="flex flex-col gap-1">
         <p className="text-4xl font-semibold">Welcome Yaw,</p>
         <p className="text-md">What would you like to do today?</p>
+        <button onClick={Logout}>Logout</button>
       </div>
 
       <div className="flex flex-wrap gap-5 mt-5 items-center pb-3  border-b-2 ">
