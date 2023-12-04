@@ -6,7 +6,7 @@ export const fetchusers = async () => {
 };
 
 export const fetchUserOne = async (id) => {
-  const response = await fetch(`${url}api/users/${id}`);
+  const response = await fetch(`${url}api/users/getone/${id}`);
   return response.json();
 };
 

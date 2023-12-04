@@ -35,6 +35,8 @@ module.exports = {
         yellow2: "#f9c75cfa",
         yellow3: "#352505",
         yellow4: "#e2d9bb7f", 
+        yellow5: "#ba810808", 
+
         pedyellow : "#ba820873"
 
         

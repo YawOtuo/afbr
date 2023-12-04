@@ -16,13 +16,13 @@ export default function Page() {
   return (
     <div className="flex flex-col gap-5 w-full justify-start px-5 lg:px-10 py-5" >
       <div className="flex gap-5 font-[400] items-center">
-        <p>Notifcations</p>
+        <p>Account</p>
         <IconButton label="add" variant="add" />
       </div>
 
       <div className="flex gap-5 w-full h-full">
         <div className="flex w-full  h-[50vh]">
-          <NoPlaceHolder label="notifications" />
+          <NoPlaceHolder label="account details" />
         </div>
       </div>
     </div>
