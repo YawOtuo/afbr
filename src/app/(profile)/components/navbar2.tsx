@@ -2,10 +2,10 @@ import Link from "next/link";
 import { MdHomeFilled } from "react-icons/md";
 
 const Links = [
-  { label: "Dashboard", link: "/profile" },
-  { label: "My Dogs", link: "/my-dogs" },
-  { label: "Messages", link: "" },
-  { label: "Notifications", link: "/notifications" },
+  { label: "Profile", link: "/profile" },
+  { label: "My Dogs", link: "/profile/my-dogs" },
+  // { label: "Messages", link: "" },
+  // { label: "Notifications", link: "/profile/notifications" },
   { label: "Account", link: "" },
 ];
 

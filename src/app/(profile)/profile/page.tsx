@@ -8,6 +8,9 @@ import IconButton from "@/components/Buttons/IconButton";
 import RecentlyRegistered from "../components/RecentyRegistered";
 import Link from "next/link";
 import { Logout } from "@/lib/utils/firebase";
+import { useSelector } from "react-redux";
+import LargeButtons from "../components/LargeButtons";
+import RecentlyRegisteredSm from "../components/RecentlyRegisteredSm";
 
 export default function Profile() {
   // const [dogs, setDogs] = useState()
@@ -16,35 +19,47 @@ export default function Profile() {
     error,
     data: dogs,
   } = useQuery(["dogs"], () => fetchDogs());
+  const userSqlData = useSelector((state) => state.users.userSqlData);
   return (
-    <div className="p-10 w-full flex flex-col">
-
+    <div className="p-10 px-5 lg:px-10 w-full flex flex-col">
       <div className="flex flex-col gap-1">
-        <p className="text-4xl font-semibold">Welcome Yaw,</p>
+        <p className="text-4xl font-semibold">
+          Welcome {userSqlData?.username},
+        </p>
         <p className="text-md">What would you like to do today?</p>
-        <button onClick={Logout}>Logout</button>
       </div>
 
-      <div className="flex flex-wrap gap-5 mt-5 items-center pb-3  border-b-2 ">
-        <Link href={"/registration"}>
-          <IconButton label="register dog" variant="register" />
-        </Link>{" "}
-        {/* <IconButton label="advertise" variant="ad" /> */}
-        {/* <IconButton label="saved registrations" variant="goto" reverse /> */}
-        <Link href={""} className="">
-          <IconButton label="view all dogs" variant="goto" reverse />
-        </Link>{" "}
-        <IconButton label="complete your profile" variant="goto" reverse />
-
+      <div className="grid grid-cols-3">
+        <div className="col-span-3 lg:col-span-1">
+          {" "}
+          <LargeButtons
+            name="Register Dog"
+            variant="register"
+            url="/registration"
+          />
+        </div>
+        <div className="col-span-3 lg:col-span-1">
+          <LargeButtons name="Become a member" variant="member" />
+        </div>{" "}
+        <div></div>
+        <div className="col-span-3 lg:col-span-1" c>
+          <LargeButtons name="Share a post" variant="post" url="community" />
+        </div>{" "}
+        <div className="col-span-3 lg:col-span-1">
+          <LargeButtons name="Complete your profile" variant="profile" />
+        </div>{" "}
       </div>
 
-      <div className="flex gap-5 flex-col lg:flex-row justify-start items-center my-5">
+      <div className="flex gap-24 flex-col lg:flex-row justify-start items-center my-5 border-y-2 ">
         <TotalSales amount={30} filter="Dogs" />
         <TotalSales amount={30} filter="advertisements" />
         <TotalSales amount={30} filter="posts/engagements" />
       </div>
-      <div className="">
+      <div className="hidden lg:flex">
         <RecentlyRegistered />
+      </div>
+      <div className="lg:hidden">
+        <RecentlyRegisteredSm/>
       </div>
     </div>
   );

@@ -4,17 +4,20 @@ import LoginForm from "./components/loginForm";
 import { useRouter } from "next/navigation";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "@/lib/utils/firebase";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "@/lib/redux/reducers/users";
 
 export default function Page() {
   const [user, loading, error] = useAuthState(auth);
   const router = useRouter();
+  const dispatch = useDispatch()
   useEffect(() => {
     if (loading) {
       // maybe trigger a loading screen
       return;
     }
     if (user) {
-      console.log(user);
+      dispatch(setUserDetails(user))
       router.push("/profile");
     }
   }, [user, loading]);

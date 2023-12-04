@@ -1,7 +1,7 @@
 import { url } from "../../../weburl";
 
-export const fetchDogs = async () => {
-  const response = await fetch(`${url}api/dogs`);
+export const fetchPosts = async () => {
+  const response = await fetch(`${url}api/posts`);
   return response.json();
 };
 

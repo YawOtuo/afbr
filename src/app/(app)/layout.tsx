@@ -2,6 +2,11 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "../globals.css";
 import Navbar from "@/components/Navbar/index";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/utils/firebase";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { setUserDetails } from "@/lib/redux/reducers/users";
 // import CoreMenu from "@/components/CoreMenu";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
@@ -16,6 +21,7 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
   return (
     <html lang="en">
       <body className={montserrat.className}>

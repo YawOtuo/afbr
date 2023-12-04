@@ -1,5 +1,5 @@
 import IconButton from "@/components/Buttons/IconButton";
-import NotificationCard from "../components/NoticationCard";
+import NotificationCard from "../../components/NoticationCard";
 
 export default function Page() {
   return (

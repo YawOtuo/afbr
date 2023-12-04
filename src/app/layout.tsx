@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/utils/provider";
-import 'swiper/css'
-
+import "swiper/css";
+import ReduxProvider from "./ReduxProvider";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 
@@ -20,9 +20,9 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <body className={montserrat.className}>
-         {children}
-        </body>
+        <ReduxProvider>
+          <body className={montserrat.className}>{children}</body>
+        </ReduxProvider>
       </Providers>
     </html>
   );
