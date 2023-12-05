@@ -1,8 +1,8 @@
 "use client";
 import DogCard from "@/components/DogCard.tsx";
-import { fetchDogs } from "@/lib/api/dogs";
+import { fetchDogOne, fetchDogs } from "@/lib/api/dogs";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import TotalSales from "../components/TotalSales";
 import IconButton from "@/components/Buttons/IconButton";
 import RecentlyRegistered from "../components/RecentyRegistered";
@@ -11,17 +11,30 @@ import { Logout } from "@/lib/utils/firebase";
 import { useSelector } from "react-redux";
 import LargeButtons from "../components/LargeButtons";
 import RecentlyRegisteredSm from "../components/RecentlyRegisteredSm";
+import UnsuccessfulRegistrationsAlert from "../components/UnsuccessfulRegistrationsAlert";
+import SuccessfulRegistrationsAlert from "../components/SuccessfulRegistrationsAlert";
 
-export default function Profile() {
+type Props = {};
+
+export default function Profile({ searchParams }: any) {
   // const [dogs, setDogs] = useState()
   const {
     isLoading,
     error,
     data: dogs,
   } = useQuery(["dogs"], () => fetchDogs());
-  const userSqlData = useSelector((state) => state.users.userSqlData);
+  const userSqlData = useSelector((state) => state?.users?.userSqlData);
+
   return (
     <div className="p-10 px-5 lg:px-10 w-full flex flex-col">
+      <div className="">
+        <UnsuccessfulRegistrationsAlert searchParams={searchParams}/>
+      </div>
+
+      <div className="">
+        <SuccessfulRegistrationsAlert />
+      </div>
+
       <div className="flex flex-col gap-1">
         <p className="text-4xl font-semibold">
           Welcome {userSqlData?.username},
@@ -59,7 +72,7 @@ export default function Profile() {
         <RecentlyRegistered />
       </div>
       <div className="lg:hidden">
-        <RecentlyRegisteredSm/>
+        <RecentlyRegisteredSm />
       </div>
     </div>
   );

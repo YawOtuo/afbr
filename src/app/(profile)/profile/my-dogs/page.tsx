@@ -23,13 +23,14 @@ export default function Profile() {
   return (
     <div className="p-10 px-5 lg:px-10">
       <div
-        className="grid grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-x-10 gap-y-10 items-center justify-center
+        className="grid grid-cols-2 lg:grid-cols-3 2xl:grid-cols-4 gap-x-10 gap-y-10 items-center justify-center
   ">
         {dogs?.map((r, index) => (
           <div key={index} className="col-span-2 lg:col-span-1">
             <DogCard dog={r} />
           </div>
         ))}
+        {isLoading && <p>Loading</p>}
       </div>
     </div>
   );

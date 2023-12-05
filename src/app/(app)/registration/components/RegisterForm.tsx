@@ -12,16 +12,25 @@ import { getTransactUrl } from "@/lib/api/expresspay";
 import { AddDog } from "@/lib/api/dogs";
 import Progress from "@/components/Progress";
 
-export default function RegisterForm({setOpen}: {setOpen : any}) {
+export default function RegisterForm({ setOpen }: { setOpen: any }) {
   const [progressValue, setProgressValue] = useState<number>(1);
   const [activeSlide, setActiveSlide] = useState(0);
   const [dogData, setuserData] = useLocalStorage<any>("dog-data", {});
   const leaseRef = useRef<any>();
   const [lastSlide, setLastSlide] = useState(false);
   const [firstSlide, setFirstSlide] = useState(true);
-  const [registrationInfo, setRegistrationInfo] =
-  useLocalStorage("dog-registration-info");
+  const [dogUnfinishedRegistrations, setDogUnfinishedRegistrations] =
+    useLocalStorage<any>("dog-unfinished-registrations", []);
+  const [registrationInfo, setRegistrationInfo] = useLocalStorage(
+    "dog-registration-info"
+  );
+  const [ready, setReady] = useState(false);
 
+  useEffect(() => {
+    if (ready) {
+      window.location = ready;
+    }
+  }, [ready]);
 
   const scrollToTop = () => {
     if (leaseRef.current) {
@@ -31,7 +40,7 @@ export default function RegisterForm({setOpen}: {setOpen : any}) {
   useEffect(() => {
     const value = (activeSlide / views.length) * 100;
     setProgressValue(value + 5);
-    activeSlide == 0 ? setFirstSlide(true) : setFirstSlide(false)
+    activeSlide == 0 ? setFirstSlide(true) : setFirstSlide(false);
     activeSlide == 3 && setLastSlide(true);
   }, [activeSlide]);
 
@@ -44,28 +53,43 @@ export default function RegisterForm({setOpen}: {setOpen : any}) {
     }
   };
 
-  const handleForward = () => {
+  const handleForward = async () => {
     if (activeSlide < views.length - 1) {
-      setActiveSlide((init) => init + 1);
-
+      setActiveSlide((prevSlide) => prevSlide + 1);
       scrollToTop();
     }
 
-    if (activeSlide == 3) {
-      AddDog({
-        dog: dogData,
-        user: { uid: "jHzIOAPwX8ajKDglIlKL3UZVC8r1" },
-      }).then(() => {
-        getTransactUrl({
+    if (activeSlide === 3) {
+      try {
+        const addDogResponse = await AddDog({
+          dog: dogData,
+          user: { uid: "jHzIOAPwX8ajKDglIlKL3UZVC8r1" },
+        });
+
+        const transactUrlResponse = await getTransactUrl({
           transaction_name: registrationInfo?.type,
-          transaction_cost: registrationInfo?.price,
+          // transaction_cost: registrationInfo?.price,
+          transaction_cost: 0.1,
           dog_name: dogData?.name,
           username: "Yaw",
           email: "yotuo2003@gmail.com",
-        })
-        
-        .then((response) => (window.location = response));
-      });
+        });
+
+        const updatedDogInfo = {
+          ...addDogResponse,
+          transactUrlResponse,
+          type: registrationInfo?.type,
+          price: registrationInfo?.price,
+          email: "yto2@",
+          username: "yaw",
+        };
+
+        setDogUnfinishedRegistrations((prev) => [...prev, updatedDogInfo]);
+        // setReady(transactUrlResponse);
+      } catch (error) {
+        console.error(error);
+        // Handle errors
+      }
     }
   };
 
