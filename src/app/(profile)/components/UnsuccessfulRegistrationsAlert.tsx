@@ -10,8 +10,8 @@ import { checkIfPaid, setHasBeenPaidFor } from "@/lib/api/expresspay";
 
 export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
 
-  let dogUnfinishedRegistrations ;
-  let setDogUnfinishedRegistrations ;
+  let dogUnfinishedRegistrations : any ;
+  let setDogUnfinishedRegistrations  :any;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -20,8 +20,8 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
     );
   }
 
-  let finishedRegistrations ;
-  let setFinishedRegistration ;
+  let finishedRegistrations  : any;
+  let setFinishedRegistration   : any;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -39,7 +39,7 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
 
         if (r?.hasBeenPaidFor) {
           // Check if the dog is not already in finishedRegistrations
-          if (!finishedRegistrations.some((dog) => dog.id === r.id)) {
+          if (!finishedRegistrations.some((dog : any) => dog.id === r.id)) {
             setFinishedRegistration((prevRegistrations: any) => [
               ...prevRegistrations,
               r,

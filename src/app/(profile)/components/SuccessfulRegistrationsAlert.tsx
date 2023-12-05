@@ -8,8 +8,8 @@ import Link from "next/link";
 import { useEffect } from "react";
 
 export default function SuccessfulRegistrationsAlert({ searchParams }: any) {
-  let finishedRegistrations;
-  let setFinishedRegistration;
+  let finishedRegistrations : any;
+  let setFinishedRegistration : any;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
