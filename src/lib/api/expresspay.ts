@@ -10,7 +10,7 @@ type body = {
 
 export const getTransactUrl = async (body: body) => {
   try {
-    const response = await fetch(`${url}api/expresspaygh/transact`, {
+    const response = await fetch(`${url}api/expresspaygh/transact_test`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
