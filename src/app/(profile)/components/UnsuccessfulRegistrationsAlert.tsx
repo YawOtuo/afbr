@@ -10,8 +10,8 @@ import { checkIfPaid, setHasBeenPaidFor } from "@/lib/api/expresspay";
 
 export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
 
-  let dogUnfinishedRegistrations : any;
-  let setDogUnfinishedRegistrations : any;
+  let dogUnfinishedRegistrations ;
+  let setDogUnfinishedRegistrations ;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -20,8 +20,8 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
     );
   }
 
-  let finishedRegistrations : any;
-  let setFinishedRegistration : any;
+  let finishedRegistrations ;
+  let setFinishedRegistration ;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -71,7 +71,7 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
 
   return (
     <div>
-      {(dogUnfinishedRegistrations as any[]).length > 0 && (
+      {(dogUnfinishedRegistrations as any[])?.length > 0 && (
         <div className="flex flex-col gap-5 items-start justify-center py-5 w-full">
           <div className="flex flex-col gap-1">
             <p className="text-xl text-yellow1 font-semibold">Notification</p>

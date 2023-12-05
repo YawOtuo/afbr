@@ -22,7 +22,7 @@ export default function SuccessfulRegistrationsAlert({ searchParams }: any) {
 
   return (
     <div>
-      {(finishedRegistrations as any[]).length > 0 && (
+      {(finishedRegistrations as any[])?.length > 0 && (
         <div className="flex flex-col gap-5 items-start justify-center py-5 w-full">
           <div className="flex flex-col gap-1">
             <p className="text-xl text-green-600 font-semibold">
