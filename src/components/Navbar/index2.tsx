@@ -16,10 +16,10 @@ const NavbarTest = (props: any) => {
   const router = useRouter();
   return (
     <nav
-      className={`w-full px-8  z-[100] max-h-[70px] 
+      className={`w-full px-8 py-2 z-[100] max-h-[70px] 
         bg-white
       } `}>
-      <div className="flex items-center justify-between mx-auto max-w-screen-2xl h-full">
+      <div className="flex items-start justify-between ">
         <Menu
           isOpen={props.isMenuOpen}
           layout

@@ -7,6 +7,10 @@ const links = [
     url: "/",
   },
   {
+    name: "Register",
+    url: "/registration",
+  },
+  {
     name: "Community",
     url: "/community",
   },

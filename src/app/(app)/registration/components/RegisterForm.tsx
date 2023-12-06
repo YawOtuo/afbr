@@ -19,6 +19,7 @@ export default function RegisterForm({ setOpen }: { setOpen: any }) {
   const leaseRef = useRef<any>();
   const [lastSlide, setLastSlide] = useState(false);
   const [firstSlide, setFirstSlide] = useState(true);
+
   const [dogUnfinishedRegistrations, setDogUnfinishedRegistrations] =
     useLocalStorage<any>("dog-unfinished-registrations", []);
   const [registrationInfo, setRegistrationInfo] = useLocalStorage(
@@ -84,7 +85,13 @@ export default function RegisterForm({ setOpen }: { setOpen: any }) {
           username: "yaw",
         };
 
-        setDogUnfinishedRegistrations((prev) => [...prev, updatedDogInfo]);
+        setDogUnfinishedRegistrations((prev) => {
+          if (prev === undefined || prev === null || !Array.isArray(prev)) {
+            return [updatedDogInfo];
+          }
+
+          return [...prev, updatedDogInfo];
+        });
         setReady(transactUrlResponse);
       } catch (error) {
         console.error(error);
