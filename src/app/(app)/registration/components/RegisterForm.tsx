@@ -85,7 +85,7 @@ export default function RegisterForm({ setOpen }: { setOpen: any }) {
         };
 
         setDogUnfinishedRegistrations((prev) => [...prev, updatedDogInfo]);
-        // setReady(transactUrlResponse);
+        setReady(transactUrlResponse);
       } catch (error) {
         console.error(error);
         // Handle errors
