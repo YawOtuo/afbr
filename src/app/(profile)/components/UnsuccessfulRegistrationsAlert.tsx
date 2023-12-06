@@ -25,7 +25,7 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     [finishedRegistrations, setFinishedRegistration] = useLocalStorage(
-      "finished-registrations"
+      "finished-registrations", {}
     );
   }
 
