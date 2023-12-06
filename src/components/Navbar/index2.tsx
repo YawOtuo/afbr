@@ -16,8 +16,8 @@ const NavbarTest = (props: any) => {
   const router = useRouter();
   return (
     <nav
-      className={`w-full px-8 py-4  z-[100] max-h-[100px] 
-        bg-[#212020]
+      className={`w-full px-8  z-[100] max-h-[70px] 
+        bg-white
       } `}>
       <div className="flex items-center justify-between mx-auto max-w-screen-2xl h-full">
         <Menu
@@ -27,7 +27,7 @@ const NavbarTest = (props: any) => {
         />
         <Link href={"/"} className="w-full h-full">
           <div
-            className="relative w-full max-w-[76px] aspect-square
+            className="relative w-full max-w-[60px] aspect-square
               md:max-w-[92px] 
               2xl:max-w-[150px] 
              ">
@@ -47,7 +47,7 @@ const NavbarTest = (props: any) => {
           </button>
 
           <button onClick={(e: any) => props?.toggleMenu((r: boolean) => !r)}>
-            <GiHamburgerMenu size="50" color="white" />
+            <GiHamburgerMenu size="50" color="black" />
           </button>
         </div>
       </div>
