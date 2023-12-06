@@ -16,7 +16,7 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     [dogUnfinishedRegistrations, setDogUnfinishedRegistrations] =
       // eslint-disable-next-line react-hooks/rules-of-hooks
-      useLocalStorage("dog-unfinished-registrations", {});
+      useLocalStorage("dog-unfinished-registrations", []);
   }
 
   let finishedRegistrations: any;
@@ -25,7 +25,8 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
     [finishedRegistrations, setFinishedRegistration] = useLocalStorage(
-      "finished-registrations", {}
+      "finished-registrations",
+      []
     );
   }
 
@@ -36,7 +37,6 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
           const r = await fetchDogOne(element?.id);
 
           if (r?.hasBeenPaidFor) {
-            // Check if the dog is not already in finishedRegistrations
             if (!finishedRegistrations.some((dog: any) => dog.id === r.id)) {
               setFinishedRegistration((prevRegistrations: any) => [
                 ...prevRegistrations,
