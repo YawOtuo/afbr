@@ -55,7 +55,7 @@ export default function Profile({ searchParams }: any) {
           <LargeButtons name="Become a member" variant="member" />
         </div>{" "}
         <div></div>
-        <div className="col-span-3 lg:col-span-1" c>
+        <div className="col-span-3 lg:col-span-1">
           <LargeButtons name="Share a post" variant="post" url="community" />
         </div>{" "}
         <div className="col-span-3 lg:col-span-1">

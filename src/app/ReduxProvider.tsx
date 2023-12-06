@@ -1,4 +1,5 @@
 "use client";
+import React from "react";
 
 import { auth } from "@/lib/utils/firebase";
 import axios from "axios";
@@ -8,9 +9,10 @@ import { useDispatch } from "react-redux";
 import { url } from "../../weburl";
 import { setUserDetails, setUserSQLDBDetails } from "@/lib/redux/reducers/users";
 
-export default function ReduxProvider({ children }) {
+export default function ReduxProvider({ children }: {children : React.ReactNode}) {
   const [user, loading, error] = useAuthState(auth);
   const dispatch = useDispatch();
+  
   useEffect(() => {
     if (loading) {
       return;
@@ -21,7 +23,6 @@ export default function ReduxProvider({ children }) {
       axios
         .get(`${url}api/users/getUserByUid/${user.uid}`)
         .then((res) => {
-            console.log(res.data)
             dispatch(setUserSQLDBDetails(res.data[0]))
          
         })

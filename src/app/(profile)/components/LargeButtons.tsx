@@ -4,7 +4,7 @@ import Link from "next/link";
 type Props = {
   name: string;
   variant: "register" | "member" | "post" | "profile";
-  url: string;
+  url?: string;
 };
 
 const options = {

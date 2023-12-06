@@ -9,19 +9,18 @@ import UnsuccessfulRegistrationCard from "./UnsuccessfulRegistrationCard";
 import { checkIfPaid, setHasBeenPaidFor } from "@/lib/api/expresspay";
 
 export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
-
-  let dogUnfinishedRegistrations : any ;
-  let setDogUnfinishedRegistrations  :any;
+  let dogUnfinishedRegistrations: any;
+  let setDogUnfinishedRegistrations: any;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
-    [dogUnfinishedRegistrations, setDogUnfinishedRegistrations] = useLocalStorage(
-      "dog-unfinished-registrations",{}
-    );
+    [dogUnfinishedRegistrations, setDogUnfinishedRegistrations] =
+      // eslint-disable-next-line react-hooks/rules-of-hooks
+      useLocalStorage("dog-unfinished-registrations", {});
   }
 
-  let finishedRegistrations  : any;
-  let setFinishedRegistration   : any;
+  let finishedRegistrations: any;
+  let setFinishedRegistration: any;
 
   if (typeof window !== "undefined") {
     // eslint-disable-next-line react-hooks/rules-of-hooks
@@ -30,43 +29,43 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
     );
   }
 
-
-
   useEffect(() => {
-    const fetchOperations = dogUnfinishedRegistrations.map(
-      async (element: any) => {
-        const r = await fetchDogOne(element?.id);
+    if (dogUnfinishedRegistrations && dogUnfinishedRegistrations.length > 0) {
+      const fetchOperations = dogUnfinishedRegistrations.map(
+        async (element: any) => {
+          const r = await fetchDogOne(element?.id);
 
-        if (r?.hasBeenPaidFor) {
-          // Check if the dog is not already in finishedRegistrations
-          if (!finishedRegistrations.some((dog : any) => dog.id === r.id)) {
-            setFinishedRegistration((prevRegistrations: any) => [
-              ...prevRegistrations,
-              r,
-            ]);
-          }
-          setDogUnfinishedRegistrations((prevRegistrations: any) =>
-            prevRegistrations.filter((dogObj: any) => dogObj.id !== r?.id)
-          );
-        } else {
-          console.log("here");
-          checkIfPaid(r?.expresspay_token).then((res) => {
-            console.log(typeof res);
-            console.log(res);
-            if (res?.result == 1) {
-              console.log(r?.id);
-              setHasBeenPaidFor(r?.id);
+          if (r?.hasBeenPaidFor) {
+            // Check if the dog is not already in finishedRegistrations
+            if (!finishedRegistrations.some((dog: any) => dog.id === r.id)) {
+              setFinishedRegistration((prevRegistrations: any) => [
+                ...prevRegistrations,
+                r,
+              ]);
             }
-          });
+            setDogUnfinishedRegistrations((prevRegistrations: any) =>
+              prevRegistrations.filter((dogObj: any) => dogObj.id !== r?.id)
+            );
+          } else {
+            console.log("here");
+            checkIfPaid(r?.expresspay_token).then((res) => {
+              console.log(typeof res);
+              console.log(res);
+              if (res?.result == 1) {
+                console.log(r?.id);
+                setHasBeenPaidFor(r?.id);
+              }
+            });
+          }
         }
-      }
-    );
+      );
 
-    const handleFetchOperations = async () => {
-      await Promise.all(fetchOperations);
-    };
+      const handleFetchOperations = async () => {
+        await Promise.all(fetchOperations);
+      };
 
-    handleFetchOperations();
+      handleFetchOperations();
+    }
   }, [dogUnfinishedRegistrations]);
 
   return (

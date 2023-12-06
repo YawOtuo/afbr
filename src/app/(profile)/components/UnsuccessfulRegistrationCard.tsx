@@ -1,3 +1,4 @@
+"use client"
 import IconButton from "@/components/Buttons/IconButton";
 import { getTransactUrl } from "@/lib/api/expresspay";
 import { useLocalStorage } from "@uidotdev/usehooks";
