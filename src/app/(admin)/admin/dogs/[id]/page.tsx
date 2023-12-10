@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import Link from "next/link";
 import { useParams } from "next/navigation";
+import ChangeOwnerModal from "../components/ChangeOwnerModal";
 
 type UProps = {
   label: string;
@@ -55,7 +56,7 @@ export default function Page() {
                 User:
                 <span className="font-semibold"> {dog?.user}</span>
               </p>
-              <IconButton variant="edit" label="Change owner" />
+              <ChangeOwnerModal id={dog?.id} />
             </div>
           </div>
 

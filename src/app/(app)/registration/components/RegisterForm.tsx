@@ -1,3 +1,4 @@
+"use client";
 import { useEffect, useRef, useState } from "react";
 import DogDetailsForm from "./DogDetailsForm1";
 import TypeForm from "./TypeForm";
@@ -9,16 +10,25 @@ import DogDetailsForm2 from "./DogDetailsForm2";
 import DogDetailsForm1 from "./DogDetailsForm1";
 import ChooseImages from "./ChooseImages";
 import { getTransactUrl } from "@/lib/api/expresspay";
-import { AddDog } from "@/lib/api/dogs";
+import { AddDog, fetchDogOne } from "@/lib/api/dogs";
 import Progress from "@/components/Progress";
+import { useRouter, useSearchParams } from "next/navigation";
+import { useQuery } from "@tanstack/react-query";
 
-export default function RegisterForm({ setOpen }: { setOpen: any }) {
+type Props = {
+  edit?: boolean;
+  dog?: number;
+};
+export default function RegisterForm({ edit, dog }: Props) {
+  const searchParams = useSearchParams();
+
   const [progressValue, setProgressValue] = useState<number>(1);
   const [activeSlide, setActiveSlide] = useState(0);
-  const [dogData, setuserData] = useLocalStorage<any>("dog-data", {});
+  const [dogData, setDogData] = useLocalStorage<any>("dog-data");
   const leaseRef = useRef<any>();
   const [lastSlide, setLastSlide] = useState(false);
   const [firstSlide, setFirstSlide] = useState(true);
+  const [editDog, setEditDog] = useState();
 
   const [dogUnfinishedRegistrations, setDogUnfinishedRegistrations] =
     useLocalStorage<any>("dog-unfinished-registrations", []);
@@ -26,6 +36,21 @@ export default function RegisterForm({ setOpen }: { setOpen: any }) {
     "dog-registration-info"
   );
   const [ready, setReady] = useState(false);
+  const dog_id = searchParams.get("dog");
+
+
+  useEffect(() => {
+    console.log(dog_id);
+
+    if (searchParams.get("edit")) {
+      fetchDogOne(dog_id)
+        .then((res) => {
+          setDogData(res)
+        }
+        )
+        .catch((err) => console.log(err));
+    }
+  }, [dog_id]);
 
   useEffect(() => {
     if (ready) {
@@ -46,7 +71,6 @@ export default function RegisterForm({ setOpen }: { setOpen: any }) {
   }, [activeSlide]);
 
   const handleBack = () => {
-    firstSlide && setOpen(false);
     if (activeSlide > 0) {
       setActiveSlide((init) => init - 1);
 
@@ -109,10 +133,9 @@ export default function RegisterForm({ setOpen }: { setOpen: any }) {
 
   return (
     <div className="w-full " ref={leaseRef}>
-      <div className="w-full mt-10">
-        <Progress value={progressValue} />
-      </div>{" "}
-      <Formik initialValues={{ ...dogData }}>
+
+      <Formik initialValues={{ ...dogData }}   enableReinitialize={true}
+>
         <Form>{views[activeSlide]}</Form>
       </Formik>
       <div

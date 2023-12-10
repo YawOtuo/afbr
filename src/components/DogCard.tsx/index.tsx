@@ -1,13 +1,15 @@
 import Image from "next/image";
 import Link from "next/link";
+import DogCardPopover from "./DogCardPopover";
+
 
 export default function DogCard({ dog }) {
   return (
-    <div className="w-full flex flex-col gap-3 shadow-[0px_1px_4px_1px_#ba82084e] pb-3 hover:scale-[1.01] cursor-pointer max-w-[300px] rounded-md overflow-hidden aspect-[346/442]">
+    <div className="relative w-full flex flex-col gap-3 shadow-[0px_1px_4px_1px_#ba82084e] pb-3 hover:scale-[1.01] cursor-pointer max-w-[300px] rounded-md overflow-hidden aspect-[346/442]">
       <Link href={`pedigree/${dog?.name}/${dog?.id}`} className="w-full">
         <div className="relative w-full  aspect-[360/282]">
           <Image
-            src={`https://res.cloudinary.com/daurieb51/image/upload/v1642082142/${
+            src=  {`https://res.cloudinary.com/daurieb51/image/upload/v1642082142/${
               dog?.public_id || "placeholderdog_xyfyje"
             }.png`}
             fill
@@ -24,6 +26,9 @@ export default function DogCard({ dog }) {
           <p className="font-[400] text-xs">{dog?.date || "N/a"}</p>{" "}
         </div>
       </Link>
+      <div className="absolute bottom-0 right-0">
+        <DogCardPopover id={dog?.id} /> 
+      </div>
     </div>
   );
 }

@@ -34,10 +34,28 @@ export const AddDog = async (body) => {
   return response.json();
 };
 
+
+export const UpdateDog = async (body, id) => {
+  const response = await fetch(`${url}api/dogs/${id}`, {
+    method: "PUT",
+    body: JSON.stringify(body),
+    headers: {
+      "Content-Type": "application/json", // Set the content type to JSON
+    },
+  });
+  return response.json();
+};
+
 export const SearchForDog = async (query:string) => {
   const response = await fetch(`${url}api/dogs/search/${query}`);
   return response.json();
 };
+
+export const fetchNewlyRegisteredDogs = async () => {
+  const response = await fetch(`${url}api/dogs/s2/newly_registered_dogs`);
+  return response.json();
+};
+
 
 
 export const deleteDogImage = async (body) => {

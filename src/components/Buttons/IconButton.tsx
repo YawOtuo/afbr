@@ -19,9 +19,10 @@ type Props = {
   variant: string;
   label: string;
   reverse?: boolean;
+  onClick? :any 
 };
 
-export default function IconButton({ variant, label, reverse }: Props) {
+export default function IconButton({ variant, label, reverse, onClick }: Props) {
   const options = {
     register: <MdOutlineBadge color="#ba8108" size="30"/>,
     ad : <RiAdvertisementLine color="#ba8108" size="30"/>,
@@ -43,8 +44,8 @@ export default function IconButton({ variant, label, reverse }: Props) {
     <button
       className={`flex gap-3 items-center justify-center capitalize hover:scale-[1.05] hover:bg-[#e4a95146] ${
         reverse && "flex-row-reverse"
-      } px-3 py-2`}>
-      {options[variant]}
+      } px-3 py-2`} onClick={onClick}>
+      {options[variant]} 
       <p className="text-[15px] whitespace-nowrap">{label}</p>
     </button>
   );
