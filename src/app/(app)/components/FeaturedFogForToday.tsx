@@ -1,6 +1,6 @@
 "use client";
 
-import { fetchAdvertisements } from "@/lib/api/ads";
+import { fetchAdvertisements, fetchAdvertisementsApproved } from "@/lib/api/ads";
 import { useQuery } from "@tanstack/react-query";
 import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -10,7 +10,7 @@ export default function FeaturedDogForToday() {
     isLoading,
     error,
     data: items,
-  } = useQuery(["advertisements"], () => fetchAdvertisements());
+  } = useQuery(["advertisements"], () => fetchAdvertisementsApproved("special"));
   return (
     <div className="w-full relative ">
       <Swiper pagination className="w-full h-full">
@@ -26,10 +26,10 @@ export default function FeaturedDogForToday() {
                 objectFit="cover"
               />
             </div>{" "}
-            <div className="absolute bottom-0 bg-yellow3 w-full p-5 flex flex-col gap-5 justify-between">
+            <div className="absolute bottom-0 bg-yellow3 lg:bg-yellow5 w-full p-5 flex flex-col gap-5 justify-between">
               <p className="text-white text-sm">Featured dog for today</p>
-              <div>
-                <p className="text-yellow1 text-3xl font-semibold">
+              <div className="">
+                <p className="text-yellow1 text-3xl font-bold">
                   {r?.name}
                 </p>
                 <p className="text-white">{r?.breed}</p>

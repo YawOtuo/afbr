@@ -1,23 +1,28 @@
 import IconButton from "@/components/Buttons/IconButton";
 import { addAdvertisement } from "@/lib/api/ads";
-import { SearchForDog, UpdateDog } from "@/lib/api/dogs";
+import { SearchForDog, SearchForDogByUser, UpdateDog } from "@/lib/api/dogs";
 import { fetchusers } from "@/lib/api/users";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
 import { useState } from "react";
+import { useSelector } from "react-redux";
 
 type Props = {
   setOpen: any;
   type: "special" | "regular"
 };
+
+//what is userSqlData.is null
 function SelectDog({ setOpen, type }: Props) {
   const queryClient = useQueryClient();
   const [keyword, setKeyWord] = useState("");
+  const userSqlData = useSelector((state) => state.users.userSqlData);
+
   const {
     isLoading,
     error: itemError,
     data: results,
-  } = useQuery(["search", keyword], () => SearchForDog(keyword), {
+  } = useQuery(["search", keyword], () => SearchForDogByUser(userSqlData?.id, keyword), {
     enabled: !!keyword,
   });
 
@@ -61,7 +66,7 @@ function SelectDog({ setOpen, type }: Props) {
               <IconButton
                 label="Advertise"
                 variant="add"
-                onClick={() => handleCreate({ dog: r?.id, type: type, date: new Date() })}
+                onClick={() => handleCreate({ dog: r?.id, type: type, date: new Date(), user_id : userSqlData?.id })}
               />
             </div>
           ))}

@@ -5,10 +5,13 @@ import DogCard from "@/components/DogCard.tsx";
 import { fetchDogs, fetchNewlyRegisteredDogs } from "@/lib/api/dogs";
 import { useQuery } from "@tanstack/react-query";
 import Link from "next/link";
-import SelectDogModal from "./components/SelectDogModal";
-import { fetchAdvertisements } from "@/lib/api/ads";
+import { fetchAdvertisements, fetchAdvertisementsByUser } from "@/lib/api/ads";
 import { useState } from "react";
-import AdminAddAdCard from "./components/AdminAddAdCard";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/utils/firebase";
+import { useSelector } from "react-redux";
+import SelectDogModal from "./components/SelectDogModal";
+import AddAdCard from "./components/AddAdCard";
 
 type TabProps = {
   name: string;
@@ -24,24 +27,42 @@ const Tab = ({ name, onClick, active }: TabProps) => {
   );
 };
 export default function Page() {
+  const userSqlData = useSelector((state) => state.users.userSqlData);
+
   const {
     isLoading,
     error,
     data: items,
-  } = useQuery(["advertisements"], () => fetchAdvertisements());
-  const {
-    isLoading: isLoading2,
-    error: error2,
-    data: special,
-  } = useQuery(["special-advertisements"], () =>
-    fetchAdvertisements("special")
+  } = useQuery(
+    ["advertisements-user"],
+    () => fetchAdvertisementsByUser(userSqlData?.id),
+    {
+      enabled: !!userSqlData?.id,
+    }
   );
+
   const {
-    isLoading: isLoading3,
-    error: error3,
+    isLoading: isLoadingSpecial,
+    error: errorSpecial,
+    data: special,
+  } = useQuery(
+    ["special-advertisements-user"],
+    () => fetchAdvertisementsByUser(userSqlData?.id, "special"),
+    {
+        enabled: !!userSqlData?.id,
+    }
+  );
+
+  const {
+    isLoading: isLoadingRegular,
+    error: errorRegular,
     data: regular,
-  } = useQuery(["regular-advertisements"], () =>
-    fetchAdvertisements("regular")
+  } = useQuery(
+    ["regular-advertisements-user"],
+    () => fetchAdvertisementsByUser(userSqlData?.id, "regular"),
+    {
+        enabled: !!userSqlData?.id,
+    }
   );
   const [type, setType] = useState("all");
 
@@ -49,7 +70,7 @@ export default function Page() {
     all: (
       <div className="flex flex-col lg:flex-row flex-wrap gap-5 w-full">
         {items?.map((r: any, index: any) => (
-          <AdminAddAdCard key={index} ad={r} />
+          <AddAdCard key={index} ad={r} />
         ))}
         {isLoading && <p>Loading</p>}
       </div>
@@ -57,7 +78,7 @@ export default function Page() {
     special: (
       <div className="flex flex-col lg:flex-row flex-wrap gap-5 w-full">
         {special?.map((r: any, index: any) => (
-          <AdminAddAdCard key={index} ad={r} />
+          <AddAdCard key={index} ad={r} />
         ))}
         {isLoading && <p>Loading</p>}
       </div>
@@ -65,7 +86,7 @@ export default function Page() {
     regular: (
       <div className="flex flex-col lg:flex-row flex-wrap gap-5 w-full">
         {regular?.map((r: any, index: any) => (
-          <AdminAddAdCard key={index} ad={r} />
+          <AddAdCard key={index} ad={r} />
         ))}
         {isLoading && <p>Loading</p>}
       </div>

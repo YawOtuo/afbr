@@ -6,7 +6,7 @@ type Props = {
 
 export default function HomeNewlyRegisteredCard({ image }: Props) {
   return (
-    <div className="w-full rounded-2xl border-[7px] border-yellow1 overflow-hidden">
+    <div className="w-full rounded-2xl shadow-md overflow-hidden">
       <div className="relative w-full aspect-[458/352] ">
         <Image
           src={`https://res.cloudinary.com/daurieb51/image/upload/v1642082142/${

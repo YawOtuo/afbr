@@ -10,6 +10,8 @@ import { CiSettings } from "react-icons/ci";
 const Links = [
   { label: "Home", link: "/profile", icon: <MdHomeFilled /> },
   { label: "My Dogs", link: "/profile/my-dogs", icon: <PiBoneBold /> },
+  { label: "Advertisements", link: "/profile/my-advertisements", icon: <TfiWrite /> },
+
   { label: "Socials", link: "/profile/socials", icon: <TfiWrite /> },
 
   { label: "Messages", link: "/profile/messages", icon: <FaRegMessage /> },
@@ -34,7 +36,7 @@ const Pagination = ({
   return (
     <Link
       href={link}
-      className="hover:scale-[1.05] hover:bg-yellow1 w-full p-3 px-10 flex gap-5 items-center ">
+      className="hover:scale-[1.05] hover:bg-yellow4 w-full p-3 px-10 flex gap-5 items-center ">
       {icon}
       <p className=" font">{label}</p>
     </Link>
@@ -43,7 +45,7 @@ const Pagination = ({
 
 export default function Navbar2() {
   return (
-    <div className="bg-[#ba810808] w-full flex flex-col h-full items-start py-20 justify-start gap-5">
+    <div className="bg-[#ba810808] w-full flex flex-col h-full items-start py-20 justify-start gap-1">
       {Links.map((r, index) => (
         <Pagination
           label={r?.label}

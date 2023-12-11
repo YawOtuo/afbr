@@ -10,11 +10,13 @@ import CaTickStyled from "./components/icons/CaTickStyled";
 import FeaturedDogForToday from "./components/FeaturedFogForToday";
 import HeroSection from "./components/HeroSection";
 import HomeNewlyRegisteredSm from "./components/HomeNewlyRegisteredSm";
+import HomeRegularAds from "./components/HomeRegularAds";
+import HomeRegularAdsSm from "./components/HomeRegularAdsSm";
 
 export default function Home() {
   return (
     <main>
-        <HeroSection/>
+      <HeroSection />
       <div className="flex w-full flex-col  px-5 lg:px-20  py-10 lg:py-24">
         <p className="text-yellow1 text-3xl lg:text-6xl font-bold text-center px-5 ">
           The African Bully Registry
@@ -25,6 +27,12 @@ export default function Home() {
         </p>
       </div>
       <FeaturedDogForToday />
+      <div className="hidden lg:flex">
+        <HomeRegularAds />
+      </div>
+      <div className="lg:hidden">
+        <HomeRegularAdsSm />
+      </div>
       <div className="grid grid-cols-2 gap-y-10  py-24 lg:py-0 lg:h-[80vh] px-5 lg:px-24">
         <div className="col-span-2 lg:col-span-1 flex flex-col gap-5 items-start justify-center">
           <p className="text-3xl lg:text-6xl ">
@@ -113,7 +121,7 @@ export default function Home() {
         <HomeNewlyRegistered />
       </div>{" "}
       <div className="lg:hidden ">
-        <HomeNewlyRegisteredSm/>
+        <HomeNewlyRegisteredSm />
       </div>
     </main>
   );

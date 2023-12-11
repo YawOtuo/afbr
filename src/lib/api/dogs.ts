@@ -51,6 +51,14 @@ export const SearchForDog = async (query:string) => {
   return response.json();
 };
 
+export const SearchForDogByUser = async (id: number, query?:string) => {
+  const response = await fetch(`${url}api/dogs/search/${id}/${query}`);
+  return response.json();
+};
+
+
+
+
 export const fetchNewlyRegisteredDogs = async () => {
   const response = await fetch(`${url}api/dogs/s2/newly_registered_dogs`);
   return response.json();

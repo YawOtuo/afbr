@@ -2,7 +2,6 @@ import React, { useState } from "react";
 import * as Dialog from "@radix-ui/react-dialog";
 import { Cross2Icon } from "@radix-ui/react-icons";
 import IconButton from "@/components/Buttons/IconButton";
-import ChangeOwner from "../../../dogs/components/ChangeOwnerModal/ChangeOwner";
 import SelectDog from "./SelectDog";
 import { useSelector } from "react-redux";
 
