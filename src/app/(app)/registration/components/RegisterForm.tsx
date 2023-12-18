@@ -10,10 +10,14 @@ import DogDetailsForm2 from "./DogDetailsForm2";
 import DogDetailsForm1 from "./DogDetailsForm1";
 import ChooseImages from "./ChooseImages";
 import { getTransactUrl } from "@/lib/api/expresspay";
-import { AddDog, fetchDogOne } from "@/lib/api/dogs";
+import { AddDog, UpdateDog, fetchDogOne } from "@/lib/api/dogs";
 import Progress from "@/components/Progress";
 import { useRouter, useSearchParams } from "next/navigation";
 import { useQuery } from "@tanstack/react-query";
+import {
+  addLocalStorageKey,
+  editLocalStorageKey,
+} from "@/lib/utils/definitions";
 
 type Props = {
   edit?: boolean;
@@ -21,10 +25,10 @@ type Props = {
 };
 export default function RegisterForm({ edit, dog }: Props) {
   const searchParams = useSearchParams();
-
-  const [progressValue, setProgressValue] = useState<number>(1);
-  const [activeSlide, setActiveSlide] = useState(0);
-  const [dogData, setDogData] = useLocalStorage<any>("dog-data");
+  const [localStorageKey, setLocalStorageKey] = useState();
+  const [progressValue, setProgressValue] = useState<number>(3);
+  const [activeSlide, setActiveSlide] = useState(2);
+  const [dogData, setDogData] = useLocalStorage<any>(localStorageKey, {});
   const leaseRef = useRef<any>();
   const [lastSlide, setLastSlide] = useState(false);
   const [firstSlide, setFirstSlide] = useState(true);
@@ -37,20 +41,26 @@ export default function RegisterForm({ edit, dog }: Props) {
   );
   const [ready, setReady] = useState(false);
   const dog_id = searchParams.get("dog");
-
+  const router = useRouter();
 
   useEffect(() => {
     console.log(dog_id);
-
     if (searchParams.get("edit")) {
-      fetchDogOne(dog_id)
-        .then((res) => {
-          setDogData(res)
-        }
-        )
-        .catch((err) => console.log(err));
+      setLocalStorageKey(editLocalStorageKey);
+    } else {
+      setLocalStorageKey(addLocalStorageKey);
     }
   }, [dog_id]);
+
+  useEffect(() => {
+    if (localStorageKey == editLocalStorageKey) {
+      fetchDogOne(dog_id)
+        .then((res) => {
+          setDogData(res);
+        })
+        .catch((err) => console.log(err));
+    }
+  }, [localStorageKey]);
 
   useEffect(() => {
     if (ready) {
@@ -86,37 +96,45 @@ export default function RegisterForm({ edit, dog }: Props) {
 
     if (activeSlide === 3) {
       try {
-        const addDogResponse = await AddDog({
-          dog: dogData,
-          user: { uid: "jHzIOAPwX8ajKDglIlKL3UZVC8r1" },
-        });
+        if (localStorageKey == addLocalStorageKey) {
+          const addDogResponse = await AddDog({
+            dog: dogData,
+            user: { uid: "jHzIOAPwX8ajKDglIlKL3UZVC8r1" },
+          });
 
-        const transactUrlResponse = await getTransactUrl({
-          transaction_name: registrationInfo?.type,
-          // transaction_cost: registrationInfo?.price,
-          transaction_cost: 0.1,
-          dog_name: dogData?.name,
-          username: "Yaw",
-          email: "yotuo2003@gmail.com",
-        });
+          const transactUrlResponse = await getTransactUrl({
+            transaction_name: registrationInfo?.type,
+            // transaction_cost: registrationInfo?.price,
+            transaction_cost: 0.1,
+            dog_name: dogData?.name,
+            username: "Yaw",
+            email: "yotuo2003@gmail.com",
+          });
 
-        const updatedDogInfo = {
-          ...addDogResponse,
-          transactUrlResponse,
-          type: registrationInfo?.type,
-          price: registrationInfo?.price,
-          email: "yto2@",
-          username: "yaw",
-        };
+          const updatedDogInfo = {
+            ...addDogResponse,
+            transactUrlResponse,
+            type: registrationInfo?.type,
+            price: registrationInfo?.price,
+            email: "yto2@",
+            username: "yaw",
+          };
 
-        setDogUnfinishedRegistrations((prev) => {
-          if (prev === undefined || prev === null || !Array.isArray(prev)) {
-            return [updatedDogInfo];
+          setDogUnfinishedRegistrations((prev) => {
+            if (prev === undefined || prev === null || !Array.isArray(prev)) {
+              return [updatedDogInfo];
+            }
+
+            return [...prev, updatedDogInfo];
+          });
+          setReady(transactUrlResponse);
+        }
+        if (localStorageKey == editLocalStorageKey) {
+          const editDogResponse = await UpdateDog(dogData, dogData?.id);
+          if (editDogResponse) {
+            router.push("/profile");
           }
-
-          return [...prev, updatedDogInfo];
-        });
-        setReady(transactUrlResponse);
+        }
       } catch (error) {
         console.error(error);
         // Handle errors
@@ -125,17 +143,29 @@ export default function RegisterForm({ edit, dog }: Props) {
   };
 
   const views = [
-    <DogDetailsForm1 key={"dog-details"} setActiveSlide={setActiveSlide} />,
-    <DogDetailsForm2 key={"dog-details"} setActiveSlide={setActiveSlide} />,
-    <ChooseImages key={"dog-images"} />,
-    <UserDetailsForm key={"user"} setActiveSlide={setActiveSlide} />,
+    <DogDetailsForm1
+      key={"dog-details"}
+      setActiveSlide={setActiveSlide}
+      localStorageKey={localStorageKey}
+    />,
+    <DogDetailsForm2
+      key={"dog-details"}
+      setActiveSlide={setActiveSlide}
+      localStorageKey={localStorageKey}
+    />,
+    <ChooseImages key={"dog-images"} localStorageKey={localStorageKey} />,
+    <UserDetailsForm
+      key={"user"}
+      setActiveSlide={setActiveSlide}
+      localStorageKey={localStorageKey}
+    />,
   ];
 
   return (
-    <div className="w-full " ref={leaseRef}>
-
-      <Formik initialValues={{ ...dogData }}   enableReinitialize={true}
->
+    <div
+      className="w-full min-h-[90vh] flex flex-col justify-between"
+      ref={leaseRef}>
+      <Formik initialValues={{ ...dogData }} enableReinitialize={true}>
         <Form>{views[activeSlide]}</Form>
       </Formik>
       <div

@@ -10,13 +10,14 @@ import { useLocalStorage } from "@uidotdev/usehooks";
 import { handleFileDrop, uploadToCloudinary } from "./api";
 import axios from "axios";
 import { deleteDogImage } from "@/lib/api/dogs";
+import { addLocalStorageKey, editLocalStorageKey } from "@/lib/utils/definitions";
 
-export default function ChooseImages() {
+type Props = {
+  localStorageKey: string;
+};
+export default function ChooseImages({ localStorageKey }: Props) {
   const [files, setFiles] = useState<any>([]);
-  const [listingImages, setListingimages] = useLocalStorage(
-    "listing-images",
-    []
-  );
+  const [dogData, setdogData] = useLocalStorage(localStorageKey);
 
   const onDrop = useCallback(
     (acceptedFiles: any) => {
@@ -25,23 +26,28 @@ export default function ChooseImages() {
     [setFiles]
   );
 
+  useEffect(() => {
+    if (files?.length > 0) {
+      setdogData((prev: any) => ({
+        ...prev,
+        images : files,
+ 
+      }));
+    }
+  }, [files])
 
   useEffect(() => {
-    if (files?.length >= 0) {
-      setListingimages(files);
+    if (dogData && localStorageKey==editLocalStorageKey){
+      setFiles([dogData?.public_id, ...dogData?.public_id_array])
     }
-  }, [files]);
-
-  useEffect(() => {
-    if (listingImages) {
-      setFiles(listingImages);
+    if (dogData && localStorageKey==addLocalStorageKey) {
+      setFiles(dogData?.images);
+      
     }
-  }, []);
+  }, [localStorageKey]);
 
   const remove = (index: any) => {
-
-
-    deleteDogImage({public_id : files[index]?.public_id })
+    deleteDogImage({ public_id: files[index]?.public_id });
 
     setFiles((previousFiles: any) => {
       const updatedFiles = [...previousFiles];
@@ -78,8 +84,8 @@ export default function ChooseImages() {
             </p>
           </div>
           <div className="flex flex-col items-end justify-center w-full h-full max-w-[1308px]">
-            {files.length >= 1 && <AddMoreImages setFiles={setFiles} />}
-            {files.length < 1 && (
+            {files?.length >= 1 && <AddMoreImages setFiles={setFiles} />}
+            {(files?.length < 1 || !files) && (
               <div
                 {...getRootProps({})}
                 className="max-w-[1308px] max-h-[640px] aspect-[1308/640] w-full h-full rounded-[0.47181rem] border-[0.755px] border-[#00000040] flex items-center justify-center">
@@ -89,7 +95,7 @@ export default function ChooseImages() {
                 ) : (
                   <div className="flex flex-col gap-2 items-center justify-center">
                     <p className="text-[0.8125rem] text-center font-[400] ">
-                      Select or drag and drop images here <br /> ( Maximum 10 )
+                      Select or drag and drop images here <br /> ( Maximum 4 )
                     </p>
                     <p></p>
                     <p className="text-[#00000066] text-[0.5rem] font-[400]">
@@ -105,11 +111,11 @@ export default function ChooseImages() {
           </div>
         </div>
 
-        {files.length >= 1 && (
+        {files?.length >= 1 && (
           <div className="grid grid-cols-3 gap-5 w-full max-w-[1308px]">
             <div className="col-span-3 h-full">
               <BannerImage
-                file={files?.[0]}
+                public_id={files?.[0]}
                 remove={() => remove(0)}
                 makeBannerImage={() => makeBannerImage}
                 addCaption={() => addCaption}
@@ -119,7 +125,7 @@ export default function ChooseImages() {
               <div className="col-span-3 md:col-span-1" key={index}>
                 <ImageCard
                   key={index}
-                  file={file}
+                  public_id={file}
                   remove={() => remove(index + 1)}
                   makeBannerImage={() => makeBannerImage(index + 1)}
                   addCaption={() => addCaption}

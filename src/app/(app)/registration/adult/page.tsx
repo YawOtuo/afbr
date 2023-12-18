@@ -9,7 +9,7 @@ import "swiper/css/navigation";
 
 export default function Page() {
   return (
-    <Root>
+    <Root className="w-full">
 
       <RegistrationSlide type="adult" />
 

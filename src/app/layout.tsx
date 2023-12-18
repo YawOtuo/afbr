@@ -3,7 +3,12 @@ import { Montserrat } from "next/font/google";
 import "./globals.css";
 import Providers from "@/lib/utils/provider";
 import "swiper/css";
+import 'swiper/css/navigation';
+import 'swiper/css/pagination';
+
 import ReduxProvider from "./ReduxProvider";
+import { useAuthState } from "react-firebase-hooks/auth";
+import { auth } from "@/lib/utils/firebase";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 

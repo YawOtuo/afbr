@@ -27,7 +27,7 @@ export default function Profile() {
   ">
         {dogs?.map((r, index) => (
           <div key={index} className="col-span-2 lg:col-span-1">
-            <DogCard dog={r} />
+            <DogCard dog={r} edit={userSqlData && true}/>
           </div>
         ))}
         {isLoading && <p>Loading</p>}

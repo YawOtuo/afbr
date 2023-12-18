@@ -61,7 +61,7 @@ export const RegistrationSlide = ({ type }) => {
   }, [type, country]);
 
   return (
-    <Root>
+    <Root className="w-full">
       <div
         className={`relative font-[800] bg-cover text-[40px] h-[70vh] items-center bg-no-repeat flex flex-col justify-center gap-10 w-full`}
         style={{

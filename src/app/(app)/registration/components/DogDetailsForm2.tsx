@@ -20,9 +20,11 @@ import SlideEnter from "@/components/SlideEnter";
 
 type Props = {
   setActiveSlide: any;
+  localStorageKey: string
+  
 };
-const DogDetailsForm2 = ({ setActiveSlide }: Props) => {
-  const [dogData, setdogData] = useLocalStorage<any>("dog-data", {});
+const DogDetailsForm2 = ({ setActiveSlide, localStorageKey }: Props) => {
+  const [dogData, setdogData] = useLocalStorage<any>(localStorageKey, {});
   const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
     useLocalStorage<any>("phoneNumberSelectedCountry");
   return (

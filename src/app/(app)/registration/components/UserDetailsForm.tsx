@@ -20,27 +20,17 @@ import { AddDog } from "@/lib/api/dogs";
 import { UpdateUser } from "@/lib/api/users";
 import { useState } from "react";
 
-
 type Props = {
-  setActiveSlide : any
-}
+  setActiveSlide: any;
+  localStorageKey: string;
+};
 
-const UserDetailsForm = ({setActiveSlide} : any) => {
-  const [dogData, setuserData] = useLocalStorage<any>("dog-data", {});
-  const [userData, setUserData] = useState({});
+const UserDetailsForm = ({ setActiveSlide, localStorageKey }: any) => {
+  const [userData, setUserData] = useLocalStorage<any>(localStorageKey, {});
   const [phoneNumberSelectedCountry, setPhoneNumberSelectedCountry] =
     useLocalStorage<any>("phoneNumberSelectedCountry");
 
-  const handleChange = () => {
-    AddDog({
-      user: {
-        uid: "jHzIOAPwX8ajKDglIlKL3UZVC8r1",
-      },
-      dog: dogData,
-    }).then((res) => console.log(res));
 
-    UpdateUser(userData, 94).then((res) => console.log(res));
-  };
   return (
     <>
       <Root className="bg-transparent flex flex-col p1 p-10 ">
@@ -102,7 +92,7 @@ const UserDetailsForm = ({setActiveSlide} : any) => {
               onChange={(e) =>
                 setUserData({
                   ...userData,
-                  contact_address: e.target.value,
+                  address1: e.target.value,
                 })
               }
             />
@@ -114,7 +104,7 @@ const UserDetailsForm = ({setActiveSlide} : any) => {
               onChange={(e) =>
                 setUserData({
                   ...userData,
-                  currentAddress2: e.target.value,
+                  address2: e.target.value,
                 })
               }
             />
@@ -135,8 +125,6 @@ const UserDetailsForm = ({setActiveSlide} : any) => {
             {/* <Applicants /> */}
           </div>
         </div>
-
- 
       </Root>
     </>
   );

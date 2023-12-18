@@ -27,7 +27,7 @@ const ImageOptionsPopover = ({
     </Popover.Trigger>
     <Popover.Portal>
       <Popover.Content
-        className="rounded-xl p-5 z-[2000] max-w-[154px] max-h-[142px] w-full h-full aspect-[154/142] bg-white focus:shadow-[0_10px_38px_-10px_hsla(206,22%,7%,.35),0_10px_20px_-15px_hsla(206,22%,7%,.2),0_0_0_2px_theme(colors.violet7)] will-change-[transform,opacity]
+        className="rounded-xl p-5 z-[2000] max-w-[154px] max-h-[142px] w-full h-full  bg-white focus:shadow-[0_10px_38px_-10px_hsla(206,22%,7%,.35),0_10px_20px_-15px_hsla(206,22%,7%,.2),0_0_0_2px_theme(colors.violet7)] will-change-[transform,opacity]
         data-[align=end]
         data-[state=open]:data-[side=top]:animate-slideDownAndFade data-[state=open]:data-[side=right]:animate-slideLeftAndFade data-[state=open]:data-[side=bottom]:animate-slideUpAndFade data-[state=open]:data-[side=left]:animate-slideRightAndFade "
         sideOffset={0}
@@ -38,7 +38,6 @@ const ImageOptionsPopover = ({
         {bannerImage ?  <button className="" type="button" onClick={makeBannerImage}>
             Make Banner Image
           </button> : null}
-          <Caption />
           <button className="" type="button" onClick={remove}>
             Remove
           </button>

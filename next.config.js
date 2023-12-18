@@ -1,17 +1,9 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+
   images: {
-    domains: [
-      "res.cloudinary.com",
-      "images.unsplash.com",
-      "flagcdn.com",
-      "upload.wikimedia.org",
-      "lh3.googleusercontent.com",
-      "cdn.sanity.io",
+    domains: ['res.cloudinary.com', 'images.unsplash.com', "flagcdn.com", "upload.wikimedia.org",
     ],
-  },
-  images: {
-    domains: ['res.cloudinary.com', 'images.unsplash.com', "flagcdn.com"],
   },
   typescript: {
     ignoreBuildErrors: true,
@@ -25,7 +17,7 @@ const nextConfig = {
             key: "Cross-Origin-Opener-Policy",
             value: "cross-origin", // "same-origin-allow-popups"
           },
-        
+
         ],
       },
     ];

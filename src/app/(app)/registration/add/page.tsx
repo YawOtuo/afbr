@@ -5,7 +5,7 @@ function Page() {
  
 
   return (
-    <div className="dog_reg_full w-full h-[100vh]">
+    <div className="dog_reg_full w-full ">
       <RegisterForm  />
     </div>
   );

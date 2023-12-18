@@ -5,11 +5,11 @@ type Props = {
   makeBannerImage: () => void;
 
   addCaption: () => void;
-  file: any;
+  public_id: any;
 };
 
 export default function BannerImage({
-  file,
+  public_id,
   makeBannerImage,
   addCaption,
   remove,
@@ -18,7 +18,7 @@ export default function BannerImage({
     <div
       className="w-full h-full min-h-[298px] xl:min-h-[500px] rounded-2xl p-5 flex flex-col gap-6"
       style={{
-        backgroundImage: `url(https://res.cloudinary.com/daurieb51/image/upload/v1701274495/${file?.public_id}.jpg)`,
+        backgroundImage: `url(https://res.cloudinary.com/daurieb51/image/upload/v1701274495/${public_id}.jpg)`,
         backgroundPosition: "50%",
         backgroundSize: "cover",
         backgroundColor: "100%",

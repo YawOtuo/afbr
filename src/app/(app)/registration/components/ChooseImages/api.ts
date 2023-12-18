@@ -21,26 +21,23 @@ const uploadToCloudinary = async (file) => {
 
 export { uploadToCloudinary };
 
-
 const handleFileDrop = async (files: any, setFiles: any) => {
   if (files?.length) {
     const uploadedFiles = await Promise.all(
       files.map(async (file: any) => {
         try {
-          const public_id = await uploadToCloudinary(file);
-          console.log(public_id)
-          return {
-            ...file,
-            public_id,
-          };
+          const public_id: string = await uploadToCloudinary(file);
+          return public_id;
         } catch (error) {
           console.error("Error uploading image:", error);
-          return file;
+          return null;
         }
       })
     );
-
-    setFiles((previousFiles: any) => [...previousFiles, ...uploadedFiles]);
+    setFiles((previousFiles: any) => [
+      ...(Array.isArray(previousFiles) ? previousFiles : []), // Ensure previousFiles is an array
+      ...uploadedFiles.filter(Boolean),
+    ]);
   }
 };
 
