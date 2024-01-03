@@ -22,7 +22,7 @@ export default function HeroSection() {
                 Welcome to The AFBR – Where Elegance Meets Strength
               </p>
               <p className={`${styles.subTitle}`}>
-                Join Africa's Premier Bully Registry and be part of a community
+                Join Africa&apos;s Premier Bully Registry and be part of a community
                 that celebrates the grace and power of Bulldog breeds.
               </p>
             </div>{" "}
