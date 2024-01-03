@@ -33,7 +33,7 @@ export default function HeroSection() {
             <div className={`${styles.homeMessage} w-[60%]`}>
               <p className={`${styles.title}`}>African bully registry</p>
               <p className={`${styles.subTitle}`}>
-                Making the bully community well respected. Africa's Premier
+                Making the bully community well respected. Africa&apos;s Premier
                 Bully Registry connecting bully breeds across Africa and around
                 the globe{" "}
               </p>
