@@ -1,6 +1,6 @@
 "use client";
 
-import { useQuery } from "@tanstack/react-query";
+import { isError, useQuery } from "@tanstack/react-query";
 import { fetchNewlyRegisteredDogs } from "@/lib/api/dogs";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
@@ -11,6 +11,7 @@ import {
   fetchAdvertisements,
   fetchAdvertisementsApproved,
 } from "@/lib/api/ads";
+import HomeLoadingPulse from "./LoadingPulse";
 
 export default function HomeRegularAds() {
   const {
@@ -38,7 +39,15 @@ export default function HomeRegularAds() {
   return (
     <div className="flex flex-col gap-10 px-5 lg:px-20 w-full mt-10">
       <p className="text-2xl font-semibold">Today&rsquo;s Advertisements</p>
-      {isLoading && <p>Loading</p>}
+      {isLoading && (
+        <div className="grid grid-cols-3 gap-x-5 gap-y-5">
+          {Array.from({ length: 9 }).map((r, index) => (
+            <HomeLoadingPulse key={index} />
+          ))}
+        </div>
+      )}
+
+      {error && <p>Couldnt load advertisements please try again</p>}
 
       <div className="flex flex-col  w-full">
         <Swiper className="w-full">
@@ -46,9 +55,9 @@ export default function HomeRegularAds() {
 
           {itemChunks?.map((r: any, index: any) => (
             <SwiperSlide key={index} className="w-full">
-              <div className="grid grid-cols-3 gap-x-5 gap-y-5 w-full">
+              <div className="flex gap-5 p-5 flex-wrap w-full">
                 {r?.map((ele, index) => (
-                  <DogCard key={index} dog={ele} />
+                  <DogCard key={index} dog={ele} maxWidth />
                 ))}
               </div>
             </SwiperSlide>

@@ -21,7 +21,7 @@ export default function AdminRecentlyRegisteredDogs() {
         </Link>{" "}
       </div>{" "}
       <div className="grid grid-cols-3  gap-y-3 mt-5 gap-x-5">
-        {items?.slice(0, 3).map((r: any, index: any) => (
+        {items?.slice(-6).map((r: any, index: any) => (
           <div className="col-span-3 md:col-span-1" key={index}>
             {" "}
             <Link href={"/pedigree"}>

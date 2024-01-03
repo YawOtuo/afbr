@@ -1,6 +1,6 @@
 "use client";
 import DogCard from "@/components/DogCard.tsx";
-import { fetchDogOne, fetchDogs } from "@/lib/api/dogs";
+import { fetchDogOne, fetchDogs, fetchDogsByUser } from "@/lib/api/dogs";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import TotalSales from "../components/TotalSales";
@@ -25,10 +25,11 @@ export default function Profile({ searchParams }: any) {
   } = useQuery(["dogs"], () => fetchDogs());
   const userSqlData = useSelector((state) => state?.users?.userSqlData);
 
+
   return (
     <div className="p-10 px-5 lg:px-10 w-full flex flex-col">
       <div className="">
-        <UnsuccessfulRegistrationsAlert searchParams={searchParams}/>
+        <UnsuccessfulRegistrationsAlert searchParams={searchParams} />
       </div>
 
       <div className="">
@@ -51,13 +52,13 @@ export default function Profile({ searchParams }: any) {
             url="/registration"
           />
         </div>
-        <div className="col-span-3 lg:col-span-1">
+        {/* <div className="col-span-3 lg:col-span-1">
           <LargeButtons name="Become a member" variant="member" />
-        </div>{" "}
-        <div></div>
-        <div className="col-span-3 lg:col-span-1">
+        </div>{" "} */}
+        {/* <div></div> */}
+        {/* <div className="col-span-3 lg:col-span-1">
           <LargeButtons name="Share a post" variant="post" url="community" />
-        </div>{" "}
+        </div>{" "} */}
         <div className="col-span-3 lg:col-span-1">
           <LargeButtons name="Complete your profile" variant="profile" />
         </div>{" "}

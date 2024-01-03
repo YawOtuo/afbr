@@ -13,7 +13,7 @@ type Props = {
 export default function HomeReasonsCard({ variant, title, subText }: Props) {
   return (
     <Root
-      className="flex flex-col gap-10  p-10 lg:p-24 items-center rounded-2xl h-fit max-w-[470px] lg:max-w-full
+      className="flex flex-col gap-10  p-10 lg:p-20 items-center rounded-2xl h-fit max-w-[470px] lg:max-w-full cursor-pointer hover:bg-yellow4 hover:scale-[1.02] text-center
     ">
       <div className="flex items-center justify-center">
         {variant == "identity" && <CaHomeIdentity />}

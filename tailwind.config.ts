@@ -37,7 +37,8 @@ module.exports = {
         yellow4: "#e2d9bb7f", 
         yellow5: "#ba810808", 
 
-        pedyellow : "#ba820873"
+        pedyellow : "#ba820873",
+        footerDark : "#343a40"
 
         
       },

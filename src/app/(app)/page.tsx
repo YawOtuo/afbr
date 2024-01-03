@@ -12,6 +12,8 @@ import HeroSection from "./components/HeroSection";
 import HomeNewlyRegisteredSm from "./components/HomeNewlyRegisteredSm";
 import HomeRegularAds from "./components/HomeRegularAds";
 import HomeRegularAdsSm from "./components/HomeRegularAdsSm";
+import { TiTickOutline } from "react-icons/ti";
+import Footer from "./components/Footer";
 
 export default function Home() {
   return (
@@ -39,8 +41,8 @@ export default function Home() {
             <span className="text-yellow1">Register</span> your dog with us
             today
           </p>
-          <Link href={"/registration"}>
-            <div className="flex gap-2 items-center">
+          <Link href={"/registration"} className="mt-20 ">
+            <div className="flex gap-2 items-center text-2xl">
               <p>REGISTER</p>
               <FaArrowRightLong color="#ba8108" />
             </div>{" "}
@@ -48,21 +50,21 @@ export default function Home() {
         </div>
 
         <div className="col-span-2 lg:col-span-1 flex flex-col gap-5 items-start lg:items-center justify-center">
-          <div className="flex flex-col gap-5">
-            <div className="flex gap-6">
-              <CaTickStyled />
+          <div className="flex flex-col gap-5 font-semibold">
+            <div className="flex gap-6 items-center">
+              <TiTickOutline color="green" size="50" />
               <p>American Bully</p>
             </div>{" "}
-            <div className="flex gap-6">
-              <CaTickStyled />
+            <div className="flex gap-6 items-center">
+              <TiTickOutline color="green" size="50" />
               <p>American Bulldog</p>
             </div>{" "}
-            <div className="flex gap-6">
-              <CaTickStyled />
+            <div className="flex gap-6  items-center">
+              <TiTickOutline color="green" size="50" />
               <p>French Bully</p>
             </div>{" "}
-            <div className="flex gap-6">
-              <CaTickStyled />
+            <div className="flex gap-6  items-center">
+              <TiTickOutline color="green" size="50" />
               <p>Pitbull</p>
             </div>{" "}
           </div>
@@ -79,18 +81,21 @@ export default function Home() {
               owners today
             </p>
             <p className="w-full">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero
-              nesciunt iusto quia ab quibusdam reiciendis eveniet et sapiente,
-              nulla iste, facere error deserunt illo voluptatum assumenda! Ex
-              maiores at eveniet?
+              Connect with Bulldog enthusiasts from around the globe, sharing
+              your passion for these remarkable breeds. Join a worldwide network
+              of Bulldog lovers, exchanging knowledge and experiences with
+              fellow enthusiasts.
             </p>
+            <Link href={"/sign-up"} className="w-full flex gap-5  justify-start items-center font-bold">
+              <p className="">Join us today</p>
+              <FaArrowRightLong color="white" />
 
-            <p className="w-full">Join us</p>
+            </Link>{" "}
           </div>{" "}
         </div>
       </div>
       <div className="flex flex-col gap-20 items-center lg:items-start justify-center  py-24 lg:h-[100vh] ">
-        <p className="text-3xl font-bold px-20 text-yellow1">
+        <p className="text-3xl font-bold px-5 lg:px-20 text-yellow1">
           What's in store for you?
         </p>
         <div className="grid grid-cols-3 gap-x-10 gap-y-10 px-5 lg:px-10   lg:py-0 items-center justify-center">
@@ -120,9 +125,11 @@ export default function Home() {
       <div className="hidden lg:flex my-20 w-full">
         <HomeNewlyRegistered />
       </div>{" "}
-      <div className="lg:hidden ">
+      <div className="lg:hidden mb-10 ">
         <HomeNewlyRegisteredSm />
       </div>
+
+      <Footer/>
     </main>
   );
 }

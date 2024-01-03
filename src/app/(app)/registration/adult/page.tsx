@@ -9,17 +9,11 @@ import "swiper/css/navigation";
 
 export default function Page() {
   return (
-    <Root className="w-full">
+    <div className="w-full">
 
       <RegistrationSlide type="adult" />
 
-    </Root>
+    </div>
   );
 }
 
-const Root = styled("section", {
-  ".swiper": {
-    width: "100%",
-    height: "100%",
-  },
-});

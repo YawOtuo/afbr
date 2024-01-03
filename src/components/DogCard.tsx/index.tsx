@@ -4,13 +4,19 @@ import DogCardPopover from "./DogCardPopover";
 import { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import IconButton from "../Buttons/IconButton";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import styles from "./index.module.css";
+import { Navigation, Pagination } from "swiper/modules";
 
 type Props = {
   dog: any;
   edit?: boolean;
+  maxWidth: boolean
+  
 };
 
-export default function DogCard({ dog, edit = false }: Props) {
+export default function DogCard({ dog, edit = false, maxWidth=false }: Props) {
   const [variant, setVariant] = useState("single");
   const [images, setImages] = useState([]);
   useEffect(() => {
@@ -40,8 +46,9 @@ export default function DogCard({ dog, edit = false }: Props) {
         <Swiper
           className="w-full"
           spaceBetween={50}
+          navigation={true}
           pagination={{ clickable: true }}
-          navigation>
+          modules={[Navigation, Pagination]}>
           {Array.isArray(images) &&
             images?.map((url, index) => (
               <SwiperSlide key={index} className="w-full">
@@ -61,7 +68,7 @@ export default function DogCard({ dog, edit = false }: Props) {
     ),
   };
   return (
-    <div className="relative w-full flex flex-col gap-3 shadow-[0px_1px_4px_1px_#ba82084e] pb-3 hover:scale-[1.01] cursor-pointer  rounded-md overflow-hidden aspect-[346/442] max-w-[300px]">
+    <div className={`relative w-full flex flex-col gap-1  xl:gap-3 shadow-[0px_1px_4px_1px_#ba82084e] pb-3 hover:scale-[1.01] cursor-pointer  rounded-md overflow-hidden aspect-[346/442] max-w-[300px]`}>
       {options[variant]}
       <div className="flex flex-col  px-2 gap-5 justify-between items-end ">
         <div className="flex flex-col gap-1 w-full pt-1">
@@ -73,7 +80,9 @@ export default function DogCard({ dog, edit = false }: Props) {
             </span>
           </p>{" "}
         </div>
-        <p className="font-[400] text-xs">{dog?.date || "N/a"}</p>{" "}
+        <p className="font-[400] text-xs">
+          Date registered: {dog?.date || "N/a"}
+        </p>{" "}
       </div>
       {edit && (
         <div className="absolute bottom-0 right-0">

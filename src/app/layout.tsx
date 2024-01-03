@@ -25,9 +25,8 @@ export default function RootLayout({
   return (
     <html lang="en">
       <Providers>
-        <ReduxProvider>
           <body className={montserrat.className}>{children}</body>
-        </ReduxProvider>
+        <ReduxProvider/>
       </Providers>
     </html>
   );

@@ -1,5 +1,7 @@
 "use client";
 
+import dynamic from "next/dynamic";
+
 import IconButton from "@/components/Buttons/IconButton";
 import { fetchDogOne } from "@/lib/api/dogs";
 import { useLocalStorage } from "@uidotdev/usehooks";
@@ -7,6 +9,11 @@ import Image from "next/image";
 import { useEffect } from "react";
 import UnsuccessfulRegistrationCard from "./UnsuccessfulRegistrationCard";
 import { checkIfPaid, setHasBeenPaidFor } from "@/lib/api/expresspay";
+
+// const UnsuccessfulRegistrationsAlert_ = dynamic(
+//   () => import("./UnsuccessfulRegistrationsAlert"),
+//   { ssr: false }
+// );
 
 export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
   let dogUnfinishedRegistrations: any;
@@ -92,6 +99,8 @@ export default function UnsuccessfulRegistrationsAlert({ searchParams }: any) {
           </div>
         </div>
       )}
+
+      {/* <UnsuccessfulRegistrationsAlert_ searchParams={searchParams} /> */}
     </div>
   );
 }

@@ -12,9 +12,9 @@ const Links = [
   { label: "My Dogs", link: "/profile/my-dogs", icon: <PiBoneBold /> },
   { label: "Advertisements", link: "/profile/my-advertisements", icon: <TfiWrite /> },
 
-  { label: "Socials", link: "/profile/socials", icon: <TfiWrite /> },
+  // { label: "Socials", link: "/profile/socials", icon: <TfiWrite /> },
 
-  { label: "Messages", link: "/profile/messages", icon: <FaRegMessage /> },
+  // { label: "Messages", link: "/profile/messages", icon: <FaRegMessage /> },
 
   {
     label: "Notifications",
@@ -22,6 +22,8 @@ const Links = [
     icon: <IoIosNotificationsOutline />,
   },
   { label: "Account", link: "/profile/account", icon: <CiSettings /> },
+  { label: "Back to site", link: "/", icon: <CiSettings /> },
+
 ];
 
 const Pagination = ({
@@ -45,7 +47,7 @@ const Pagination = ({
 
 export default function Navbar2() {
   return (
-    <div className="bg-[#ba810808] w-full flex flex-col h-full items-start py-20 justify-start gap-1">
+    <div className="bg-[#ba810808] w-full flex flex-col h-[100vh] sticky top-0 items-start py-20 justify-start gap-1">
       {Links.map((r, index) => (
         <Pagination
           label={r?.label}

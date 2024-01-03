@@ -11,12 +11,7 @@ import { useSelector } from "react-redux";
 
 const montserrat = Montserrat({ subsets: ["latin"] });
 export default function Layout({ children }: { children: React.ReactNode }) {
-  const router = useRouter()
-  const userData = useSelector((state) => state.users.userData);
 
-  useEffect(() => {
-    !userData && router.push('/login')
-  }, [userData]);
   return (
     <body className={montserrat.className}>
       <div className="grid grid-cols-5">

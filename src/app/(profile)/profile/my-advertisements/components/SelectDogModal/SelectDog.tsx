@@ -1,15 +1,15 @@
 import IconButton from "@/components/Buttons/IconButton";
 import { addAdvertisement } from "@/lib/api/ads";
-import { SearchForDog, SearchForDogByUser, UpdateDog } from "@/lib/api/dogs";
+import { SearchForDog, SearchForDogByUser, UpdateDog, fetchDogsByUser } from "@/lib/api/dogs";
 import { fetchusers } from "@/lib/api/users";
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useSelector } from "react-redux";
 
 type Props = {
   setOpen: any;
-  type: "special" | "regular"
+  type: "special" | "regular";
 };
 
 //what is userSqlData.is null
@@ -17,14 +17,31 @@ function SelectDog({ setOpen, type }: Props) {
   const queryClient = useQueryClient();
   const [keyword, setKeyWord] = useState("");
   const userSqlData = useSelector((state) => state.users.userSqlData);
+  const [searchResults, setSearchResults] = useState()
 
   const {
     isLoading,
     error: itemError,
     data: results,
-  } = useQuery(["search", keyword], () => SearchForDogByUser(userSqlData?.id, keyword), {
-    enabled: !!keyword,
-  });
+  } = useQuery(
+    ["search", keyword],
+    () => SearchForDogByUser(userSqlData?.id, keyword),
+    {
+      enabled: !!keyword,
+    }
+  );
+
+  const {
+    isLoading: iniLoading,
+    error,
+    data: dogs,
+  } = useQuery(
+    ["dogs", userSqlData?.id], // Pass userSqlData?.id as part of the query key
+    () => fetchDogsByUser(userSqlData?.id),
+    {
+      enabled: !!userSqlData?.id, // Enable the query only if userSqlData?.id is truthy
+    }
+  );
 
   const updateMutation = useMutation((newItem) => addAdvertisement(newItem), {
     onSuccess: () => {
@@ -36,6 +53,14 @@ function SelectDog({ setOpen, type }: Props) {
     updateMutation.mutate(data);
     setOpen(false);
   };
+
+  useEffect(()=>{
+      setSearchResults(dogs)
+  }, [dogs])
+
+  useEffect(() => {
+    setSearchResults(results)
+  }, [results])
   return (
     <div>
       <input
@@ -45,7 +70,7 @@ function SelectDog({ setOpen, type }: Props) {
       />
       {isLoading && <p>Loading</p>}
       <div className="flex flex-wrap gap-5">
-        {(results || [])
+        {(searchResults || [])
           .filter((r) => r?.newly_registered !== "yes")
           .map((r, index) => (
             <div
@@ -66,7 +91,14 @@ function SelectDog({ setOpen, type }: Props) {
               <IconButton
                 label="Advertise"
                 variant="add"
-                onClick={() => handleCreate({ dog: r?.id, type: type, date: new Date(), user_id : userSqlData?.id })}
+                onClick={() =>
+                  handleCreate({
+                    dog: r?.id,
+                    type: type,
+                    date: new Date(),
+                    user_id: userSqlData?.id,
+                  })
+                }
               />
             </div>
           ))}

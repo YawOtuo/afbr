@@ -23,7 +23,7 @@ export default function HomeRegularAdsSm() {
       <Swiper spaceBetween={25} className="">
         {items?.map((r, index) => (
           <SwiperSlide key={index}>
-            <DogCard dog={r} />
+            <DogCard dog={r} maxWidth/>
           </SwiperSlide>
         ))}
       </Swiper>

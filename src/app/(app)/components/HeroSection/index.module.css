@@ -1,0 +1,28 @@
+.title{
+    text-transform: uppercase;
+    font-size: 38px;
+    color: #ba8108
+
+}
+
+.homeMessage{
+    height: 100%;
+    background-image: linear-gradient(to right, black ,rgba(0, 0, 0, 0.731) , transparent);
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    text-align: left;
+    align-items: start;
+    color: white;
+    font-weight: bold;
+    padding-inline: 4%;
+
+    @media screen and (max-width : 1024px) {
+        display: none;
+    }
+}
+
+.subTitle {
+    font-size: 24px;
+    
+}

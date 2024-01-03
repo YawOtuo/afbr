@@ -7,12 +7,15 @@ import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { useDispatch } from "react-redux";
 import { url } from "../../weburl";
-import { setUserDetails, setUserSQLDBDetails } from "@/lib/redux/reducers/users";
+import {
+  setUserDetails,
+  setUserSQLDBDetails,
+} from "@/lib/redux/reducers/users";
 
-export default function ReduxProvider({ children }: {children : React.ReactNode}) {
+export default function ReduxProvider(){
   const [user, loading, error] = useAuthState(auth);
   const dispatch = useDispatch();
-  
+
   useEffect(() => {
     if (loading) {
       return;
@@ -23,8 +26,7 @@ export default function ReduxProvider({ children }: {children : React.ReactNode}
       axios
         .get(`${url}api/users/getUserByUid/${user.uid}`)
         .then((res) => {
-            dispatch(setUserSQLDBDetails(res.data[0]))
-         
+          dispatch(setUserSQLDBDetails(res.data[0]));
         })
 
         .catch((err) => {
@@ -32,5 +34,4 @@ export default function ReduxProvider({ children }: {children : React.ReactNode}
         });
     }
   }, [user, loading]);
-  return <div> {children}</div>;
 }

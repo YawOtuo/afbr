@@ -27,7 +27,7 @@ export default function RegisterForm({ edit, dog }: Props) {
   const searchParams = useSearchParams();
   const [localStorageKey, setLocalStorageKey] = useState();
   const [progressValue, setProgressValue] = useState<number>(3);
-  const [activeSlide, setActiveSlide] = useState(2);
+  const [activeSlide, setActiveSlide] = useState(0);
   const [dogData, setDogData] = useLocalStorage<any>(localStorageKey, {});
   const leaseRef = useRef<any>();
   const [lastSlide, setLastSlide] = useState(false);

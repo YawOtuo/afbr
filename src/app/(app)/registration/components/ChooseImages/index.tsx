@@ -38,7 +38,7 @@ export default function ChooseImages({ localStorageKey }: Props) {
 
   useEffect(() => {
     if (dogData && localStorageKey==editLocalStorageKey){
-      setFiles([dogData?.public_id, ...dogData?.public_id_array])
+      setFiles([dogData?.public_id, ...(Array.isArray(dogData?.public_id_array) ? dogData?.public_id_array : [])]);
     }
     if (dogData && localStorageKey==addLocalStorageKey) {
       setFiles(dogData?.images);

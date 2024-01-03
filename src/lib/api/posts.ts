@@ -5,26 +5,34 @@ export const fetchPosts = async () => {
   return response.json();
 };
 
+export const likePost = async (id) => {
+  const response = await fetch(`${url}api/posts/like/${id}`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json", // Set the content type to JSON
+    },
+  });
 
-export const fetchDogsByUser = async (id) => {
-  const response = await fetch(`${url}api/dogs/getdoguser/${id}`);
   return response.json();
 };
 
-
-export const fetchDogOne = async (id) => {
-  const response = await fetch(`${url}api/dogs/${id}`);
+export const fetchPostsByUser = async (id) => {
+  const response = await fetch(`${url}api/posts/getdoguser/${id}`);
   return response.json();
 };
 
-export const fetchDogPedigree = async (id) => {
-  const response = await fetch(`${url}api/dogs/pedigree/${id}`);
+export const fetchPostOne = async (id) => {
+  const response = await fetch(`${url}api/posts/${id}`);
   return response.json();
 };
 
+export const fetchPostPedigree = async (id) => {
+  const response = await fetch(`${url}api/posts/pedigree/${id}`);
+  return response.json();
+};
 
-export const AddDog = async (body) => {
-  const response = await fetch(`${url}api/dogs`, {
+export const AddPost = async (body) => {
+  const response = await fetch(`${url}api/posts`, {
     method: "POST",
     body: JSON.stringify(body),
     headers: {
@@ -34,14 +42,13 @@ export const AddDog = async (body) => {
   return response.json();
 };
 
-export const SearchForDog = async (query:string) => {
-  const response = await fetch(`${url}api/dogs/search/${query}`);
+export const SearchForPost = async (query: string) => {
+  const response = await fetch(`${url}api/posts/search/${query}`);
   return response.json();
 };
 
-
-export const deleteDogImage = async (body) => {
-  const response = await fetch(`${url}api/dogs/c/cloudinary`, {
+export const deletePost = async (body) => {
+  const response = await fetch(`${url}api/posts/c/cloudinary`, {
     method: "DELETE",
     body: JSON.stringify(body),
     headers: {
